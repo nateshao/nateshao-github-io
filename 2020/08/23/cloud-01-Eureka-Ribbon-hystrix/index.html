@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cloud-01-Eureka-Ribbon-hystrix | 浅悦的的编程时光</title>
+  <meta name="keywords" content=" springcloud ">
+  <meta name="description" content="cloud-01-Eureka-Ribbon-hystrix | 浅悦的的编程时光">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java后端学习路线">
+<meta property="og:url" content="https://nate-lin.gitee.io/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="浅悦的的编程时光">
+<meta property="og:description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-01T07:43:10.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:03:09.208Z">
+<meta property="article:author" content="浅  悦">
+<meta property="article:tag" content="笔记整理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="浅悦的的编程时光" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>浅  悦</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/nateshao" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/yong-yuan-de-da-an-9" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/u/4534135" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="juejin" href="https://juejin.im/user/5eaf74985188256d3c52d287" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-juejin"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1210331079@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(90)</small></div></li>
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(36)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(12)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="dubbo">dubbo<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="中间件">中间件<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="微服务">微服务<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记整理">笔记整理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="软件测试">软件测试<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="面试">面试<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/">About</a><a style="width: 50%"  class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_word_count" value="200.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://nateshao.gitee.io/">千羽</a></li>
+            
+            <li><a target="_blank" href="https://wallleap.cn/">Luwang</a></li>
+            
+            <li><a target="_blank" href="http://www.natehuang.cn/index">natehuang</a></li>
+            
+            <li><a target="_blank" href="http://yuyang.run/#/">阳哥在奔跑</a></li>
+            
+            <li><a target="_blank" href="https://www.lzhpo.com/">会打篮球的程序猿</a></li>
+            
+            <li><a target="_blank" href="https://nate-lin.gitee.io/">浅悦</a></li>
+            
+            <li><a target="_blank" href="https://qghost.gitee.io/blog/">Wyatex`s blog</a></li>
+            
+            <li><a target="_blank" href="https://www.pkslow.com/">南瓜慢说</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BootStrap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JavaWeb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>js</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springboot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springcloud</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SSM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其他</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>性能测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>笔记整理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软件测试</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="All 面试 "
+           href="/2020/06/21/%E9%9D%A2%E8%AF%95-%E7%AE%80%E5%8E%86%E5%88%B6%E4%BD%9C%E4%B8%93%E9%A2%98/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="面试+简历制作专题">面试+简历制作专题</span>
+            <span class="post-date" title="2020-06-21 08:10:38">2020/06/21</span>
+        </a>
+        
+        <a id="top" class="All 笔记整理 "
+           href="/2020/06/25/Xmind%E6%B1%87%E6%80%BB%E6%89%80%E6%9C%89%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Xmind汇总所有知识点">Xmind汇总所有知识点</span>
+            <span class="post-date" title="2020-06-25 15:43:24">2020/06/25</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/14/MySQL%E8%BF%9B%E9%98%B604-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶04-索引的使用">MySQL进阶04-索引的使用</span>
+            <span class="post-date" title="2020-07-14 22:03:04">2020/07/14</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/06/MySQL%E8%BF%9B%E9%98%B603-MySQL%E4%BC%98%E5%8C%96/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶03-MySQL优化">MySQL进阶03-MySQL优化</span>
+            <span class="post-date" title="2020-07-06 15:21:16">2020/07/06</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B602-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶02(存储引擎)">MySQL进阶02(存储引擎)</span>
+            <span class="post-date" title="2020-07-04 21:52:31">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B601-%E7%B4%A2%E5%BC%95-%E8%A7%86%E5%9B%BE-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶01(索引-视图-存储过程)">MySQL进阶01(索引-视图-存储过程)</span>
+            <span class="post-date" title="2020-07-04 21:41:15">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/%E4%BD%A0%E4%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%90%97/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="你会单元测试吗">你会单元测试吗</span>
+            <span class="post-date" title="2020-06-12 22:17:41">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/SpringBoot%E6%95%B4%E5%90%88JustAuth%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合JustAuth第三方登录">SpringBoot整合JustAuth第三方登录</span>
+            <span class="post-date" title="2020-06-12 12:52:15">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 面试 "
+           href="/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="Java后端学习路线">Java后端学习路线</span>
+            <span class="post-date" title="2020-11-01 15:43:10">2020/11/01</span>
+        </a>
+        
+        <a id="top" class="All dubbo "
+           href="/2020/08/23/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6-Dubbo/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="分布式RPC框架-Dubbo">分布式RPC框架-Dubbo</span>
+            <span class="post-date" title="2020-08-23 13:01:18">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/10/21/%E5%8D%83%E7%BE%BD%E8%BF%99%E4%B8%A4%E5%B9%B4/"
+           data-tag="大学"
+           data-author="" >
+            <span class="post-title" title="千羽这两年..">千羽这两年..</span>
+            <span class="post-date" title="2020-10-21 20:47:42">2020/10/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/25/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法">推荐算法</span>
+            <span class="post-date" title="2020-09-25 22:14:36">2020/09/25</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/09/07/cloud-02-feign-gateway-bus/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-02-feign-gateway-bus">cloud-02-feign-gateway-bus</span>
+            <span class="post-date" title="2020-09-07 20:20:25">2020/09/07</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/09/07/%E5%8D%83%E7%BE%BDJava%E5%BC%80%E5%8F%91%E7%9A%84%E5%AE%9E%E4%B9%A0%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"
+           data-tag="springboot"
+           data-author="" >
+            <span class="post-title" title="千羽Java开发的实习经验分享">千羽Java开发的实习经验分享</span>
+            <span class="post-date" title="2020-09-07 13:28:44">2020/09/07</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/03/Java%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E4%B9%8B%E7%81%AB%E7%84%B0%E5%9B%BE/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="Java性能分析之火焰图">Java性能分析之火焰图</span>
+            <span class="post-date" title="2020-09-03 23:14:47">2020/09/03</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-02-RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-02-RabbitMQ集群搭建">RabbitMQ-02-RabbitMQ集群搭建</span>
+            <span class="post-date" title="2020-08-23 14:56:07">2020/08/23</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-01-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-01-基础入门">RabbitMQ-01-基础入门</span>
+            <span class="post-date" title="2020-08-23 14:54:04">2020/08/23</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-01-Eureka-Ribbon-hystrix">cloud-01-Eureka-Ribbon-hystrix</span>
+            <span class="post-date" title="2020-08-23 14:05:11">2020/08/23</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/23/%E4%BD%A0%E5%9B%9E%E5%8E%BB%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BRESTful%E9%A3%8E%E6%A0%BC/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="你回去了解一下RESTful风格">你回去了解一下RESTful风格</span>
+            <span class="post-date" title="2020-08-23 11:50:25">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/keymap-win%E8%BD%ACmac/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="keymap-win转mac">keymap-win转mac</span>
+            <span class="post-date" title="2020-08-23 11:41:21">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-07-typeof-null-undefined/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-07-typeof-null-undefined">js-07-typeof-null-undefined</span>
+            <span class="post-date" title="2020-08-23 10:20:40">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-04-break%E5%92%8Ccontinue/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-04-break和continue">js-04-break和continue</span>
+            <span class="post-date" title="2020-08-23 10:15:47">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-06-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-06-判断语句">js-06-判断语句</span>
+            <span class="post-date" title="2020-08-23 10:08:50">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-05-%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-05-字符串">js-05-字符串</span>
+            <span class="post-date" title="2020-08-23 10:08:42">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-03-%E5%AF%B9%E8%B1%A1/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-03-对象">js-03-对象</span>
+            <span class="post-date" title="2020-08-23 10:08:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-02-基本语法">js-02-基本语法</span>
+            <span class="post-date" title="2020-08-23 10:07:58">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-01-%E5%85%A5%E9%97%A8/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-01-入门">js-01-入门</span>
+            <span class="post-date" title="2020-08-23 10:07:34">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-23 00:33:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/22/docker-12-k8s%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-12-k8s部署SpringCloud">docker-12-k8s部署SpringCloud</span>
+            <span class="post-date" title="2020-08-22 23:55:18">2020/08/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/22/SpringBoot%E6%95%B4%E5%90%88Shiro/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合Shiro">SpringBoot整合Shiro</span>
+            <span class="post-date" title="2020-08-22 22:21:03">2020/08/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/08/19/Java%E5%9F%BA%E7%A1%8028-%E5%B7%A9%E5%9B%BA/"
+           data-tag="Java基础,JavaWeb"
+           data-author="" >
+            <span class="post-title" title="Java基础28-巩固">Java基础28-巩固</span>
+            <span class="post-date" title="2020-08-19 09:12:51">2020/08/19</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/18/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"
+           data-tag="性能测试"
+           data-author="" >
+            <span class="post-title" title="性能测试">性能测试</span>
+            <span class="post-date" title="2020-08-18 01:02:12">2020/08/18</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-09-%E5%86%99Dockerfile%E5%B9%B6%E4%B8%8A%E4%BC%A0DockerHub/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-09-写Dockerfile并上传DockerHub">docker-09-写Dockerfile并上传DockerHub</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-10-%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9A%E9%95%9C%E5%83%8F%E7%A7%81%E6%9C%8D/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-10-搭建企业镜像私服">docker-10-搭建企业镜像私服</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-11-Rancher%E6%9D%A5%E4%BA%86/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-11-Rancker来了">docker-11-Rancker来了</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-01-基础知识">接口测试-01-基础知识</span>
+            <span class="post-date" title="2020-08-17 01:02:18">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-02-Jmeter">接口测试-02-Jmeter</span>
+            <span class="post-date" title="2020-08-17 01:02:12">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-01-%E5%AE%89%E8%A3%85docker/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-01-安装docker">docker-01-安装docker</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-04-docker-compose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-04-docker-compose">docker-04-docker-compose</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-02-docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-02-docker应用部署">docker-02-docker应用部署</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-05-docker 私有仓库">docker-05-docker 私有仓库</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-03-dockerfile/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-03-dockerfile">docker-03-dockerfile</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-06-docker%E9%83%A8%E7%BD%B2Springboot/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-06-docker部署Springboot">docker-06-docker部署Springboot</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/11/docker-08-%E7%BC%96%E5%86%99dockerCompose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-08-编写dockerCompose">docker-08-编写dockerCompose</span>
+            <span class="post-date" title="2020-08-11 08:03:09">2020/08/11</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/07/12/powermock%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="初始Mockito">初始Mockito</span>
+            <span class="post-date" title="2020-07-12 11:32:28">2020/07/12</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/07/06/JDBC/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="JDBC">JDBC</span>
+            <span class="post-date" title="2020-07-06 15:57:29">2020/07/06</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/06/24/docker-07-docker%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-07-docker部署SpringCloud">docker-07-docker部署SpringCloud</span>
+            <span class="post-date" title="2020-06-24 08:03:09">2020/06/24</span>
+        </a>
+        
+        <a  class="All 笔记整理 "
+           href="/2020/06/18/%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9C%80%E8%A6%81%E4%BC%9A%E4%BB%80%E4%B9%88/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="后端工程师需要会什么?">后端工程师需要会什么?</span>
+            <span class="post-date" title="2020-06-18 16:03:07">2020/06/18</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/06/18/MySql%E5%85%A5%E9%97%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySql入门">MySql入门</span>
+            <span class="post-date" title="2020-06-18 10:18:26">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/BootStrap/"
+           data-tag="BootStrap"
+           data-author="" >
+            <span class="post-title" title="BootStrap">BootStrap</span>
+            <span class="post-date" title="2020-06-18 10:01:45">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/Jquery/"
+           data-tag="css,js"
+           data-author="" >
+            <span class="post-title" title="Jquery">Jquery</span>
+            <span class="post-date" title="2020-06-18 09:45:10">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/CSS-Js%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="CSS-Js入门">CSS-Js入门</span>
+            <span class="post-date" title="2020-06-18 09:23:20">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/HTML%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="HTML入门">HTML入门</span>
+            <span class="post-date" title="2020-06-18 09:07:56">2020/06/18</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/06/17/Eclipse%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8/"
+           data-tag="其他"
+           data-author="" >
+            <span class="post-title" title="Eclipse快捷键大全">Eclipse快捷键大全</span>
+            <span class="post-date" title="2020-06-17 16:54:56">2020/06/17</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8027-%E5%8F%8D%E5%B0%84-JDK%E6%96%B0%E7%89%B9%E6%80%A7/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础27-反射-JDK新特性">Java基础27-反射-JDK新特性</span>
+            <span class="post-date" title="2020-06-16 12:24:25">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8026-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础26-网络编程">Java基础26-网络编程</span>
+            <span class="post-date" title="2020-06-16 12:23:06">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8025-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础25-多线程-下">Java基础25-多线程-下</span>
+            <span class="post-date" title="2020-06-16 12:22:52">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8024-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8A/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础24-多线程-上">Java基础24-多线程-上</span>
+            <span class="post-date" title="2020-06-16 12:22:41">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8023-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础23-递归练习">Java基础23-递归练习</span>
+            <span class="post-date" title="2020-06-16 12:21:56">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8022-IO%E5%85%B6%E4%BB%96%E6%B5%81-Properties/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础22-IO其他流-Properties">Java基础22-IO其他流-Properties</span>
+            <span class="post-date" title="2020-06-16 12:21:12">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8021-IO%E5%AD%97%E7%AC%A6%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础21-IO字符流">Java基础21-IO字符流</span>
+            <span class="post-date" title="2020-06-16 12:19:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8020-IO%E5%AD%97%E8%8A%82%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础20-IO字节流">Java基础20-IO字节流</span>
+            <span class="post-date" title="2020-06-16 12:17:38">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8019-%E5%BC%82%E5%B8%B8-IO%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础19-异常-IO流">Java基础19-异常-IO流</span>
+            <span class="post-date" title="2020-06-16 12:13:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8018-Map%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础18-Map集合">Java基础18-Map集合</span>
+            <span class="post-date" title="2020-06-16 11:59:30">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8017-Set%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础17-Set集合">Java基础17-Set集合</span>
+            <span class="post-date" title="2020-06-16 11:15:22">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8016-List%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础16-List集合">Java基础16-List集合</span>
+            <span class="post-date" title="2020-06-16 10:55:01">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8015-Colletion%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础15-Colletion集合">Java基础15-Colletion集合</span>
+            <span class="post-date" title="2020-06-16 10:14:26">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8014-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础14-正则表达式">Java基础14-正则表达式</span>
+            <span class="post-date" title="2020-06-16 10:06:18">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8013-StringBuffer/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础13-StringBuffer">Java基础13-StringBuffer</span>
+            <span class="post-date" title="2020-06-16 09:42:03">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8012-String%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础12-String类">Java基础12-String类</span>
+            <span class="post-date" title="2020-06-16 08:11:21">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8011-Eclipse-Object/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础11-Eclipse-Object">Java基础11-Eclipse-Object</span>
+            <span class="post-date" title="2020-06-16 07:47:42">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8010-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础10-面向对象-匿名内部类">Java基础10-面向对象-匿名内部类</span>
+            <span class="post-date" title="2020-06-15 23:32:04">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8009-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础09-面向对象-多态-接口">Java基础09-面向对象-多态-接口</span>
+            <span class="post-date" title="2020-06-15 12:46:01">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8008-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础08-面向对象">Java基础08-面向对象</span>
+            <span class="post-date" title="2020-06-15 12:22:32">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/07/Boot%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B%E5%9B%BE/"
+           data-tag="SSM"
+           data-author="" >
+            <span class="post-title" title="Boot客户端管理系统流程图">Boot客户端管理系统流程图</span>
+            <span class="post-date" title="2020-06-07 17:03:11">2020/06/07</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/05/27/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9AMysql%E5%90%97/"
+           data-tag="Mysql"
+           data-author="" >
+            <span class="post-title" title="你真的会Mysql吗">你真的会Mysql吗</span>
+            <span class="post-date" title="2020-05-27 23:58:15">2020/05/27</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8007-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础07-面向对象-方法">Java基础07-面向对象-方法</span>
+            <span class="post-date" title="2020-05-22 16:39:11">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8006-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础06-二维数组">Java基础06-二维数组</span>
+            <span class="post-date" title="2020-05-22 15:50:47">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8005-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础05-一维数组">Java基础05-一维数组</span>
+            <span class="post-date" title="2020-05-22 15:49:45">2020/05/22</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9502-%E6%A0%88%E5%A0%86-%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法02-栈堆-队列">数据结构与算法02-栈堆-队列</span>
+            <span class="post-date" title="2020-05-21 16:21:48">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9501-%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法01-概念">数据结构与算法01-概念</span>
+            <span class="post-date" title="2020-05-21 16:18:09">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9503-%E6%A0%91-%E4%B8%8A/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法03-树-上">数据结构与算法03-树-上</span>
+            <span class="post-date" title="2020-05-21 16:15:29">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8004-for%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础04-for循环">Java基础04-for循环</span>
+            <span class="post-date" title="2020-05-21 10:49:10">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8002-%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E5%8F%98%E9%87%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础02(进制运算&amp;数据类型&amp;变量)">Java基础02(进制运算&amp;数据类型&amp;变量)</span>
+            <span class="post-date" title="2020-05-21 09:12:51">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础01(计算机基础)">Java基础01(计算机基础)</span>
+            <span class="post-date" title="2020-05-21 08:54:02">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8003-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础03-逻辑运算符">Java基础03-逻辑运算符</span>
+            <span class="post-date" title="2020-05-21 07:47:37">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/19/%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="那些年踩过的坑">那些年踩过的坑</span>
+            <span class="post-date" title="2020-05-19 22:34:46">2020/05/19</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/16/SpringBoot-Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot-Vue前后端分离">SpringBoot-Vue前后端分离</span>
+            <span class="post-date" title="2020-05-16 21:25:17">2020/05/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/11/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门2">SpringBoot快速入门2</span>
+            <span class="post-date" title="2020-05-11 12:25:18">2020/05/11</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/04/12/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门1">SpringBoot快速入门1</span>
+            <span class="post-date" title="2020-04-12 16:14:22">2020/04/12</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-cloud-01-Eureka-Ribbon-hystrix" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">cloud-01-Eureka-Ribbon-hystrix</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            <a  data-rel="微服务">微服务</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">springcloud</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-09-13 12:46:51'>2020-08-23 14:05</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:5.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8F%98"><span class="toc-text">1. 系统架构演变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="toc-text">2. 微服务架构说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F%E8%AF%B4%E6%98%8E"><span class="toc-text">3. 服务调用方式说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Spring-RestTemplate%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B%E5%AF%BC%E5%85%A5"><span class="toc-text">4. Spring RestTemplate示例工程导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Spring-Cloud%E6%A6%82%E8%BF%B0"><span class="toc-text">5. Spring Cloud概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%88%9B%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B7%A5%E7%A8%8B"><span class="toc-text">6. 创建微服务工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%88%B6%E5%B7%A5%E7%A8%8Bnateshao-cloud-02-mybatis"><span class="toc-text">创建微服务父工程nateshao-cloud-02-mybatis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AEuser-service%E5%B7%A5%E7%A8%8B"><span class="toc-text">7. 搭建配置user-service工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AEconsumer-demo%E5%B7%A5%E7%A8%8B"><span class="toc-text">8. 搭建配置consumer-demo工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E8%AF%B4%E6%98%8E"><span class="toc-text">9. Eureka注册中心说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%90%AD%E5%BB%BAeureka-server%E5%B7%A5%E7%A8%8B"><span class="toc-text">10. 搭建eureka-server工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0"><span class="toc-text">11. 服务注册与发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-Eureka-Server%E9%AB%98%E5%8F%AF%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">12. Eureka Server高可用配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE10086%E5%92%8C10087%E7%AB%AF%E5%8F%A3"><span class="toc-text">访问10086和10087端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Eureka%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-text">13. Eureka客户端与服务端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1Ribbon%E7%AE%80%E4%BB%8B"><span class="toc-text">14. 负载均衡Ribbon简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%BA%94%E7%94%A8"><span class="toc-text">15. Ribbon负载均衡应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E7%86%94%E6%96%AD%E5%99%A8Hystrix%E7%AE%80%E4%BB%8B"><span class="toc-text">16. 熔断器Hystrix简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E7%BA%BF%E7%A8%8B%E9%9A%94%E7%A6%BB-amp-%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-text">17. 线程隔离&amp;服务降级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-text">18. 服务熔断</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cloud-01-Eureka-Ribbon-hystrix</p>
+<a id="more"></a>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/cloud-01-%E5%85%A5%E9%97%A8.png"></p>
+<h2 id="1-系统架构演变"><a href="#1-系统架构演变" class="headerlink" title="1. 系统架构演变"></a>1. 系统架构演变</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">1[集中式架构] --&gt; 2[垂直拆分]</span><br><span class="line">2 --&gt; 3[分布式服务]</span><br><span class="line">3 --&gt; 4[SOA面向服务架构]</span><br><span class="line">4 --&gt; 5[微服务架构]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-微服务架构说明"><a href="#2-微服务架构说明" class="headerlink" title="2. 微服务架构说明"></a>2. 微服务架构说明</h2><p><strong>分析</strong>：</p>
+<blockquote>
+<p>SOA使用了ESB组件的面向服务架构：ESB自身实现复杂；应用服务粒度较大，所有服务之间的通信都经过ESB会降低通信速度；部署、测试ESB比较麻烦。</p>
+</blockquote>
+<p><strong>小结</strong>：</p>
+<blockquote>
+<p><strong>微服务架构</strong>：是一套使用小服务或者单一业务来开发单个应用的方式或途径。</p>
+</blockquote>
+<p>微服务架构特点：</p>
+<ul>
+<li>单一职责</li>
+<li>服务粒度小</li>
+<li>面向服务（对外暴露REST api）</li>
+<li>服务之间相互独立</li>
+</ul>
+<p>与使用ESB的SOA架构的区别：<strong>微服务架构没有使用ESB，有服务治理注册中心；业务粒度小。</strong></p>
+<h2 id="3-服务调用方式说明"><a href="#3-服务调用方式说明" class="headerlink" title="3. 服务调用方式说明"></a>3. 服务调用方式说明</h2><p><strong>分析</strong>：</p>
+<ul>
+<li>RPC：基于socket，速度快，效率高；webservice、dubbo</li>
+<li>HTTP：基于TCP，封装比较臃肿；对服务和调用方没有任何技术、语言的限定，自由灵活；RESTful，Spring Cloud</li>
+</ul>
+<h2 id="4-Spring-RestTemplate示例工程导入"><a href="#4-Spring-RestTemplate示例工程导入" class="headerlink" title="4. Spring RestTemplate示例工程导入"></a>4. Spring RestTemplate示例工程导入</h2><p><strong>分析</strong>：</p>
+<p>一般情况下有如下三种http客户端工具类包都可以方便的进行http服务调用：</p>
+<ul>
+<li>httpClient</li>
+<li>okHttp</li>
+<li>JDK原生URLConnection</li>
+</ul>
+<p>spring 提供了RestTemplate的工具类对上述的3种http客户端工具类进行了封装，可在spring项目中使用RestTemplate进行服务调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestTemplateTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;http://localhost/user/8&quot;</span>;</span><br><span class="line">        <span class="comment">//restTemplate可以对json格式字符串进行反序列化</span></span><br><span class="line">        User user = restTemplate.getForObject(url, User.class);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-Spring-Cloud概述"><a href="#5-Spring-Cloud概述" class="headerlink" title="5. Spring Cloud概述"></a>5. Spring Cloud概述</h2><ul>
+<li>Spring Cloud的组件可以有很多组件；常见的组件有：<strong>eureka注册中心，Gateway网关，Ribbon负载均衡，Feign服务调用，Hystrix熔断器</strong>。在有需要的时候项目添加对于的启动器依赖即可。</li>
+<li>版本特征：以英文单词命名（伦敦地铁站名）</li>
+</ul>
+<h2 id="6-创建微服务工程"><a href="#6-创建微服务工程" class="headerlink" title="6. 创建微服务工程"></a>6. 创建微服务工程</h2><p><strong>目标</strong>：创建微服务父工程nateshao-cloud-02-mybatis、用户服务工程user-service、服务消费工程user-consumer</p>
+<p><strong>分析</strong>：</p>
+<p>需求：查询数据库中的用户数据并输出到浏览器</p>
+<ul>
+<li>父工程nateshao-cloud-02-mybatis：添加spring boot父坐标和管理其它组件的依赖</li>
+<li>用户服务工程user-service：整合mybatis查询数据库中用户数据；提供查询用户服务</li>
+<li>服务消费工程user-consumer：利用查询用户服务获取用户数据并输出到浏览器</li>
+</ul>
+<p><strong>小结</strong>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- springCloud --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>scope</code> 的import可以继承 <code>spring-cloud-dependencies</code> 工程中的依赖</p>
+<h3 id="创建微服务父工程nateshao-cloud-02-mybatis"><a href="#创建微服务父工程nateshao-cloud-02-mybatis" class="headerlink" title="创建微服务父工程nateshao-cloud-02-mybatis"></a>创建微服务父工程nateshao-cloud-02-mybatis</h3><p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nateshao-cloud-02-mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>user-service<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>user-consumer<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Greenwich.SR1<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper.starter.version</span>&gt;</span>2.1.5<span class="tag">&lt;/<span class="name">mapper.starter.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mysql.version</span>&gt;</span>5.1.46<span class="tag">&lt;/<span class="name">mysql.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- springCloud --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 通用Mapper启动器 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mapper.starter.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- mysql驱动 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-搭建配置user-service工程"><a href="#7-搭建配置user-service工程" class="headerlink" title="7. 搭建配置user-service工程"></a>7. 搭建配置user-service工程</h2><p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/2.png" alt="user-service工程结构"></p>
+<p><strong>目标</strong>：配置user-service工程并能够根据用户id查询数据库中用户</p>
+<p><strong>分析</strong>：</p>
+<p>需求：可以访问<a target="_blank" rel="noopener" href="http://localhost:9091/user/8%E8%BE%93%E5%87%BA%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE">http://localhost:9091/user/8输出用户数据</a></p>
+<p>实现步骤：</p>
+<ol>
+<li>添加启动器依赖（web、通用Mapper）；</li>
+<li>创建启动引导类和配置文件；</li>
+<li>修改配置文件中的参数；</li>
+<li>编写测试代码（UserMapper，UserService，UserController）；</li>
+<li>测试</li>
+</ol>
+<p><strong>小结</strong>：</p>
+<p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nateshao-cloud-02-mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>user-service<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 通用Mapper启动器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>tk.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mapper-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- mysql驱动 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>编写配置文件<strong>application.yml</strong></li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="string">$&#123;port:9091&#125;</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springcloud</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>启动器UserApplication.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.user;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.spring.annotation.MapperScan;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.nateshao.user.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(UserApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>UserController.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.user.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nateshao.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> com.nateshao.user.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/27 23:07</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">queryById</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="comment">/*try &#123;</span></span><br><span class="line"><span class="comment">            Thread.sleep(2000);</span></span><br><span class="line"><span class="comment">        &#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="comment">            e.printStackTrace();</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> userService.queryById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>UserMapper.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.user.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nateshao.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.mapper.common.Mapper;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/27 23:06</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>User.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.user.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> tk.mybatis.mapper.annotation.KeySql;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/27 23:06</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Table(name = &quot;tb_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="comment">// id</span></span><br><span class="line">    <span class="meta">@Id</span>     <span class="comment">//开启主键自动回填</span></span><br><span class="line">    <span class="meta">@KeySql(useGeneratedKeys = true)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用户名</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 密码</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 年龄</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 性别，1男性，2女性</span></span><br><span class="line">    <span class="keyword">private</span> Integer sex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 出生日期</span></span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date created;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新时间</span></span><br><span class="line">    <span class="keyword">private</span> Date updated;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 备注</span></span><br><span class="line">    <span class="keyword">private</span> String note;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.user.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nateshao.user.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.nateshao.user.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/27 23:08</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据主键查询用户</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id 用户id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 用户</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">queryById</span><span class="params">(Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectByPrimaryKey(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动UserApplication.java ，访问<a target="_blank" rel="noopener" href="http://localhost:9091/user/9">http://localhost:9091/user/9</a></strong></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/1.png" alt="访问结果"></p>
+<h2 id="8-搭建配置consumer-demo工程"><a href="#8-搭建配置consumer-demo工程" class="headerlink" title="8. 搭建配置consumer-demo工程"></a>8. 搭建配置consumer-demo工程</h2><p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/3.png" alt="consume工程结构"></p>
+<p><strong>目标</strong>：编写测试类使用restTemplate访问user-service的路径根据id查询用户</p>
+<p><strong>分析</strong>：</p>
+<p>需求：访问<a target="_blank" rel="noopener" href="http://localhost:8080/consumer/8">http://localhost:8080/consumer/8</a> 使用RestTemplate获取<a target="_blank" rel="noopener" href="http://localhost:9091/user/8%E7%9A%84%E6%95%B0%E6%8D%AE">http://localhost:9091/user/8的数据</a></p>
+<p>实现步骤：</p>
+<ol>
+<li>添加启动器依赖；</li>
+<li>创建启动引导类（注册RestTemplate）和配置文件；</li>
+<li>编写测试代码（ConsumerController中使用restTemplate访问服务获取数据）</li>
+<li>测试</li>
+</ol>
+<p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nateshao-cloud-02-mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>user-consumer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>ConsumerController.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.consumer.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/28 0:33</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">queryById</span><span class="params">(Long id)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        String url = <span class="string">&quot;http://localhost:9091/user/9&quot;</span> ;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(url, User.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    User.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.consumer.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/28 0:36</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用户名</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 密码</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 年龄</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 性别，1男性，2女性</span></span><br><span class="line">    <span class="keyword">private</span> Integer sex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 出生日期</span></span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date created;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新时间</span></span><br><span class="line">    <span class="keyword">private</span> Date updated;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 备注</span></span><br><span class="line">    <span class="keyword">private</span> String note;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ConsumerApplication.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nateshao.consumer;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> Created by 邵桐杰 on 2020/8/28 0:31</span></span><br><span class="line"><span class="comment"> * @微信公众号 千羽的编程时光</span></span><br><span class="line"><span class="comment"> * @个人网站 www.nateshao.cn</span></span><br><span class="line"><span class="comment"> * @博客 https://nateshao.gitee.io</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@GitHub</span> https://github.com/nateshao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Gitee</span> https://gitee.com/nateshao</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringCloudApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(ConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动user-service和user-consumer工程</strong></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/11.png" alt="访问结果"></p>
+<p><strong>小结</strong>：</p>
+<ul>
+<li>服务管理<br>如何自动注册和发现<br>如何实现状态监管<br>如何实现动态路由</li>
+<li>服务如何实现负载均衡</li>
+<li>服务如何解决容灾问题</li>
+<li>服务如何实现统一配置</li>
+</ul>
+<p>上述的问题都可以通过Spring Cloud的各种组件解决。</p>
+<h2 id="9-Eureka注册中心说明"><a href="#9-Eureka注册中心说明" class="headerlink" title="9. Eureka注册中心说明"></a>9. Eureka注册中心说明</h2><blockquote>
+<p>Eureka的主要功能是进行服务管理，定期检查服务状态，返回服务地址列表。</p>
+</blockquote>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/1560439174201.png" alt="Eureka注册中心原理"></p>
+<h2 id="10-搭建eureka-server工程"><a href="#10-搭建eureka-server工程" class="headerlink" title="10. 搭建eureka-server工程"></a>10. 搭建eureka-server工程</h2><p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/eureka-%E7%9B%AE%E5%BD%95.png" alt="eureka-目录"></p>
+<p><strong>目标</strong>：添加eureka对应依赖和编写引导类搭建eureka服务并可访问eureka服务界面</p>
+<p><strong>分析</strong>：</p>
+<p>Eureka是服务注册中心，只做服务注册；自身并不提供服务也不消费服务。可以搭建web工程使用Eureka，可以使用Spring Boot方式搭建。</p>
+<p>搭建步骤：</p>
+<ol>
+<li>创建工程；</li>
+<li>添加启动器依赖；</li>
+<li>编写启动引导类（添加Eureka的服务注解）和配置文件；</li>
+<li>修改配置文件（端口，应用名称…）；</li>
+<li>启动测试</li>
+</ol>
+<p><strong>小结</strong>：</p>
+<ul>
+<li>启动器依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="string">$&#123;port:10086&#125;</span>  <span class="comment"># 如果提供端口则用port，没有就默认10086</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="comment"># eureka 服务地址，如果是集群的话；需要指定其它集群eureka地址</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br><span class="line">    <span class="comment"># 不注册自己</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 不拉取服务</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="comment"># 服务失效剔除时间间隔，默认60秒</span></span><br><span class="line">    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">60000</span></span><br><span class="line">    <span class="comment"># 关闭自我保护模式（默认是打开的）</span></span><br><span class="line">    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>EurekaServerApplication.java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.naateshao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明当前应用时Eureka服务</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span> <span class="comment">//开启Eureka客户端发现功能</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaServerApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E7%BB%93%E6%9E%9C.png"></p>
+<h2 id="11-服务注册与发现"><a href="#11-服务注册与发现" class="headerlink" title="11. 服务注册与发现"></a>11. 服务注册与发现</h2><blockquote>
+<p>将user-service的服务注册到eureka并在consumer-demo中可以根据服务名称调用</p>
+</blockquote>
+<ul>
+<li><p><strong>服务注册</strong>：在服务提供工程user-service上添加Eureka客户端依赖；自动将服务注册到EurekaServer服务地址列表。</p>
+<ul>
+<li>添加依赖；</li>
+<li>改造启动引导类；添加开启Eureka客户端发现的注解；</li>
+<li>修改配置文件；设置Eureka 服务地址</li>
+</ul>
+</li>
+<li><p><strong>服务发现</strong>：在服务消费工程consumer-demo上添加Eureka客户端依赖；可以使用工具类根据服务名称获取对应的服务地址列表。</p>
+<ul>
+<li><p>添加依赖；</p>
+</li>
+<li><p>改造启动引导类；添加开启Eureka客户端发现的注解；</p>
+</li>
+<li><p>修改配置文件；设置Eureka 服务地址；</p>
+</li>
+<li><p>改造处理器类ConsumerController，可以使用工具类DiscoveryClient根据服务名称获取对应服务地址列表。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>添加Eureka客户端依赖；</p>
+<p>pom.xml (user-consumer)</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>添加启动引导类注解；</p>
+<p>ConsumerApplication.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span> <span class="comment">//开启Eureka客户端发现功能</span></span><br><span class="line"><span class="meta">@EnableCircuitBreaker</span> <span class="comment">//开启熔断*/</span></span><br><span class="line"><span class="meta">@SpringCloudApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(ConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置</p>
+<p>application.yml</p>
+</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">user-consumer</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br></pre></td></tr></table></figure>
+
+<p>ConsumerController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@DefaultProperties(defaultFallback = &quot;defaultFallback&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DiscoveryClient discoveryClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryById</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;http://localhost:9091/user/&quot;</span>+id;</span><br><span class="line">        List&lt;ServiceInstance&gt; serviceInstances = discoveryClient.getInstances(<span class="string">&quot;user-service&quot;</span>);</span><br><span class="line">        ServiceInstance serviceInstance = serviceInstances.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        url = <span class="string">&quot;http://&quot;</span> + serviceInstance.getHost() + <span class="string">&quot;:&quot;</span> + serviceInstance.getPort() + <span class="string">&quot;/user/&quot;</span> + id;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(url, String.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问<a target="_blank" rel="noopener" href="http://localhost:9091/user/9%EF%BC%8C%E5%B0%B1%E7%9C%8B%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%86%85%E5%AE%B9%E3%80%82">http://localhost:9091/user/9，就看获取服务内容。</a></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/9.png"></p>
+<p>在服务的消费过程中，根据服务名称可以得到服务内容。</p>
+<h2 id="12-Eureka-Server高可用配置"><a href="#12-Eureka-Server高可用配置" class="headerlink" title="12. Eureka Server高可用配置"></a>12. Eureka Server高可用配置</h2><p><strong>目标</strong>：可以启动两台eureka-server实例；在eureka管理界面看到两个实例</p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/10086.png" alt="10086"></p>
+<p>Eureka Server是一个web应用，可以启动多个实例（配置不同端口）保证Eureka Server的高可用。</p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/10087.png" alt="10087"></p>
+<h2 id="访问10086和10087端口"><a href="#访问10086和10087端口" class="headerlink" title="访问10086和10087端口"></a>访问10086和10087端口</h2><p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/1008687.png"></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E8%AE%BF%E9%97%AE10087%E7%AB%AF%E5%8F%A3%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E4%B8%A4%E4%B8%AA.png" alt="访问10087端口也可以看到两个"></p>
+<p><strong>小结</strong>：</p>
+<p><strong>高可用配置</strong>：将Eureka Server作为一个服务注册到其它Eureka Server，这样多个Eureka Server之间就能够互相发现对方，同步服务，实现Eureka Server集群。</p>
+<h2 id="13-Eureka客户端与服务端配置"><a href="#13-Eureka客户端与服务端配置" class="headerlink" title="13. Eureka客户端与服务端配置"></a>13. Eureka客户端与服务端配置</h2><blockquote>
+<p><code>Eureka</code>作为一个成熟的<code>服务注册中心</code>当然也有合理的内部<code>维护服务节点</code>的机制，比如<code>服务下线</code>、<code>失效剔除</code>、<code>自我保护</code>，也正是因为内部有这种维护机制才让<code>Eureka</code>更健壮、更稳定。</p>
+</blockquote>
+<p><strong>目标</strong>：配置eureka客户端user-service的注册、续约等配置项，配置eureka客户端consumer-demo的获取服务间隔时间；了解失效剔除和自我保护</p>
+<p><strong>分析</strong>：</p>
+<ul>
+<li><p>Eureka客户端工程</p>
+<ul>
+<li>user-service 服务提供<ul>
+<li>服务地址使用ip方式</li>
+<li>续约</li>
+</ul>
+</li>
+<li>user-consumer 服务消费<ul>
+<li>获取服务地址的频率</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Eureka服务端工程 eureka-server</p>
+<ul>
+<li><p><strong>失效剔除</strong> :<code>Eureka Server</code>在启动完成后会创建一个定时器每隔<code>60秒</code>检查一次<code>服务健康状况</code>，如果其中一个服务节点超过<code>90秒</code>未检查到心跳，那么<code>Eureka Server</code>会自动从<code>服务实例列表</code>内将该服务<code>剔除</code>。</p>
+<p>由于非正常关闭不会执行<code>主动下线</code>动作，所以才会出现<code>失效剔除</code>机制，该机制主要是应对非正常关闭服务的情况，如：<code>内存溢出</code>、<code>杀死进程</code>、<code>服务器宕机</code>等<code>非正常流程</code>关闭服务节点时。</p>
+</li>
+<li><p><strong>自我保护</strong> :<code>Eureka Server</code>的<code>自我保护机制</code>会检查最近<code>15分钟</code>内所有<code>Eureka Client</code>正常心跳的占比，如果低于<code>85%</code>就会被触发。 我们如果在<code>Eureka Server</code>的管理界面发现如下的红色内容，就说明已经触发了<code>自我保护机制</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>小结</strong>：</p>
+<ul>
+<li>user-service </li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="comment"># 更倾向使用ip地址，而不是host名</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># ip地址</span></span><br><span class="line">    <span class="attr">ip-address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">    <span class="comment"># 续约间隔，默认30秒</span></span><br><span class="line">    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">5</span></span><br><span class="line">    <span class="comment"># 服务失效时间，默认90秒</span></span><br><span class="line">    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>user-consumer</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br><span class="line">    <span class="comment"># 获取服务地址列表间隔时间，默认30秒</span></span><br><span class="line">    <span class="attr">registry-fetch-interval-seconds:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>eureka-server</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="comment"># 服务失效剔除时间间隔，默认60秒</span></span><br><span class="line">    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">60000</span></span><br><span class="line">    <span class="comment"># 关闭自我保护模式（默认是打开的）</span></span><br><span class="line">    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="14-负载均衡Ribbon简介"><a href="#14-负载均衡Ribbon简介" class="headerlink" title="14. 负载均衡Ribbon简介"></a>14. 负载均衡Ribbon简介</h2><ul>
+<li>负载均衡和ribbon的作用</li>
+</ul>
+<blockquote>
+<p>负载均衡是一个算法，可以通过该算法实现从地址列表中获取一个地址进行服务调用。在Spring Cloud中提供了负载均衡器：Ribbon</p>
+</blockquote>
+<p><strong>小结</strong>：</p>
+<p>Ribbon提供了<strong>轮询、随机</strong>两种负载均衡算法（默认是轮询）可以实现从地址列表中使用负载均衡算法获取地址进行服务调用。</p>
+<h2 id="15-Ribbon负载均衡应用"><a href="#15-Ribbon负载均衡应用" class="headerlink" title="15. Ribbon负载均衡应用"></a>15. Ribbon负载均衡应用</h2><p><strong>目标</strong>：配置启动两个用户服务，在consumer-demo中使用服务名实现根据用户id获取用户</p>
+<p><strong>分析</strong>：</p>
+<p>需求：可以使用RestTemplate访问<a target="_blank" rel="noopener" href="http://user-service/user/8%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E6%95%B0%E6%8D%AE%E3%80%82">http://user-service/user/8获取服务数据。</a></p>
+<p>可以使用Ribbon负载均衡：在执行RestTemplate发送服务地址请求的时候，使用负载均衡拦截器拦截，根据服务名获取服务地址列表，使用Ribbon负载均衡算法从服务地址列表中选择一个服务地址，访问该地址获取服务数据。</p>
+<p>实现步骤：</p>
+<ol>
+<li>启动多个user-service实例（9091,9092）；</li>
+<li>修改RestTemplate实例化方法，添加负载均衡注解；</li>
+<li>修改ConsumerController；</li>
+<li>测试</li>
+</ol>
+<p><strong>小结</strong>：</p>
+<p>在实例化RestTemplate的时候使用@LoadBalanced，服务地址直接可以使用服务名。</p>
+<h2 id="16-熔断器Hystrix简介"><a href="#16-熔断器Hystrix简介" class="headerlink" title="16. 熔断器Hystrix简介"></a>16. 熔断器Hystrix简介</h2><p>熔断器Hystrix的作用</p>
+<blockquote>
+<p>Hystrix是一个延迟和容错库，用于隔离访问远程服务，防止出现级联失败。</p>
+</blockquote>
+<h2 id="17-线程隔离-amp-服务降级"><a href="#17-线程隔离-amp-服务降级" class="headerlink" title="17. 线程隔离&amp;服务降级"></a>17. 线程隔离&amp;服务降级</h2><p><strong>目标</strong>：了解什么是线程隔离和服务降级</p>
+<p><strong>分析</strong>：</p>
+<p>Hystrix解决雪崩效应：</p>
+<ul>
+<li><strong>线程隔离</strong>：用户请求不直接访问服务，而是使用线程池中空闲的线程访问服务，加速失败判断时间。</li>
+<li><strong>服务降级</strong>：及时返回服务调用失败的结果，让线程不因为等待服务而阻塞。</li>
+</ul>
+<p><strong>pom.xml(user-consumer)</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>开启熔断 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @SpringBootApplication</span></span><br><span class="line"><span class="comment">//@EnableDiscoveryClient //开启Eureka客户端发现功能</span></span><br><span class="line"><span class="comment">//@EnableCircuitBreaker //开启熔断*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringCloudApplication</span> 等于上面三个注解</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>降级逻辑</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@DefaultProperties(defaultFallback = &quot;defaultFallback&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DiscoveryClient discoveryClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="comment">//@HystrixCommand(fallbackMethod = &quot;queryByIdFallback&quot;)</span></span><br><span class="line">    <span class="meta">@HystrixCommand</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryById</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="comment">/*String url = &quot;http://localhost:9091/user/&quot;+id;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        //获取eureka中注册的user-service的实例</span></span><br><span class="line"><span class="comment">        List&lt;ServiceInstance&gt; serviceInstances = discoveryClient.getInstances(&quot;user-service&quot;);</span></span><br><span class="line"><span class="comment">        ServiceInstance serviceInstance = serviceInstances.get(0);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        url = &quot;http://&quot; + serviceInstance.getHost() + &quot;:&quot; + serviceInstance.getPort() + &quot;/user/&quot; + id;*/</span></span><br><span class="line">        String url = <span class="string">&quot;http://user-service/user/&quot;</span> + id;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(url, String.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryByIdFallback</span><span class="params">(Long id)</span></span>&#123;</span><br><span class="line">        log.error(<span class="string">&quot;查询用户信息失败。id：&#123;&#125;&quot;</span>, id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;对不起，网络太拥挤了！&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">defaultFallback</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;默认提示：对不起，网络太拥挤了！&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第一次访问</p>
+<ul>
+<li><p>修改超时配置<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E5%AF%B9%E4%B8%8D%E8%B5%B7.png"></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%88%B7%E6%96%B0%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86.png" alt="刷新"></p>
+</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hystrix:</span></span><br><span class="line">  <span class="attr">command:</span></span><br><span class="line">    <span class="string">default:4e</span></span><br><span class="line">      <span class="attr">execution:</span></span><br><span class="line">        <span class="attr">isolation:</span></span><br><span class="line">          <span class="attr">thread:</span></span><br><span class="line">            <span class="attr">timeoutInMilliseconds:</span> <span class="number">2000</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="18-服务熔断"><a href="#18-服务熔断" class="headerlink" title="18. 服务熔断"></a>18. 服务熔断</h2><ul>
+<li>了解熔断器工作原理</li>
+</ul>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/1560682028169.png" alt="1560682028169"></p>
+<p>可以通过配置服务熔断参数修改默认：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hystrix:</span></span><br><span class="line">  <span class="attr">command:</span></span><br><span class="line">    <span class="attr">default:</span></span><br><span class="line">      <span class="attr">execution:</span></span><br><span class="line">        <span class="attr">isolation:</span></span><br><span class="line">          <span class="attr">thread:</span></span><br><span class="line">            <span class="attr">timeoutInMilliseconds:</span> <span class="number">2000</span></span><br><span class="line">      <span class="attr">circuitBreaker:</span></span><br><span class="line">        <span class="attr">errorThresholdPercentage:</span> <span class="number">50</span> <span class="comment"># 触发熔断错误比例阈值，默认值50%</span></span><br><span class="line">        <span class="attr">sleepWindowInMilliseconds:</span> <span class="number">10000</span> <span class="comment"># 熔断后休眠时长，默认值5秒</span></span><br><span class="line">        <span class="attr">requestVolumeThreshold:</span> <span class="number">10</span> <span class="comment"># 熔断触发最小请求次数，默认值是20</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E8%AF%B7%E6%B1%8210%E6%AC%A1%EF%BC%8C%E7%9C%8B%E4%B8%80%E4%B8%8B%E6%95%88%E6%9E%9C.png" alt="请求10次，看一下效果"></p>
+<p>访问次数过多，断路器打开状态，进行服务降级：</p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E5%87%BA%E9%97%AE%E9%A2%98%E4%BA%86.png" alt="出问题了"></p>
+<p>过了几秒，形成了半开状态，允许部分访问</p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/%E7%AD%89%E5%BE%85%E5%87%A0%E7%A7%92%EF%BC%8C%E5%86%8D%E6%AC%A1%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%8F%88%E5%8F%AF%E4%BB%A5%E4%BA%86.png" alt="等待几秒，再次访问，又可以了"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1210331079@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">Title:</span>cloud-01-Eureka-Ribbon-hystrix</p>
+    <p><span class="copy-title">Count:</span><span class="post-count">5.4k</span></p>
+    <p><span class="copy-title">Author:</span><a  title="浅  悦">浅  悦</a></p>
+    <p><span class="copy-title">Created At:</span>2020-08-23, 14:05:11</p>
+    <p><span class="copy-title">Updated At:</span>2020-09-13, 12:46:51</p>
+    <span class="copy-title">Url:</span><a class="post-url" href="/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/" title="cloud-01-Eureka-Ribbon-hystrix">https://nate-lin.gitee.io/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/</a>
+    <p>
+        <span class="copy-title">Copyright:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#39;Attribution-non-commercial-shared in the same way 4.0&#39;</a> Reprint please keep the original link and author.
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 千羽
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>donation.headline</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:true,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+// 底部音乐
+<div style="position:absolute; bottom: 0; right: 0;">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29393038&auto=1&height=66"></iframe>
+</div>
+
+//右上角Github图标
+<a target="_blank" rel="noopener" href="https://github.com/nateshao" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80"
+         height="80"
+         viewBox="0 0 250 250"
+         style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+         aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                                                                                                                                                                                                                                                                                                    fill="currentColor"
+                                                                                                                                                                                                                                                                                                    class="octo-body">
+        </path>
+    </svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+
+</html>

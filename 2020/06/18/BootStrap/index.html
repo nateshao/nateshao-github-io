@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BootStrap | 浅悦的的编程时光</title>
+  <meta name="keywords" content=" BootStrap ">
+  <meta name="description" content="BootStrap | 浅悦的的编程时光">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java后端学习路线">
+<meta property="og:url" content="https://nate-lin.gitee.io/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="浅悦的的编程时光">
+<meta property="og:description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-01T07:43:10.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:03:09.208Z">
+<meta property="article:author" content="浅  悦">
+<meta property="article:tag" content="笔记整理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="浅悦的的编程时光" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>浅  悦</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/nateshao" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/yong-yuan-de-da-an-9" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/u/4534135" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="juejin" href="https://juejin.im/user/5eaf74985188256d3c52d287" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-juejin"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1210331079@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(90)</small></div></li>
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(36)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(12)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="dubbo">dubbo<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="中间件">中间件<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="微服务">微服务<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记整理">笔记整理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="软件测试">软件测试<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="面试">面试<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/">About</a><a style="width: 50%"  class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_word_count" value="200.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://nateshao.gitee.io/">千羽</a></li>
+            
+            <li><a target="_blank" href="https://wallleap.cn/">Luwang</a></li>
+            
+            <li><a target="_blank" href="http://www.natehuang.cn/index">natehuang</a></li>
+            
+            <li><a target="_blank" href="http://yuyang.run/#/">阳哥在奔跑</a></li>
+            
+            <li><a target="_blank" href="https://www.lzhpo.com/">会打篮球的程序猿</a></li>
+            
+            <li><a target="_blank" href="https://nate-lin.gitee.io/">浅悦</a></li>
+            
+            <li><a target="_blank" href="https://qghost.gitee.io/blog/">Wyatex`s blog</a></li>
+            
+            <li><a target="_blank" href="https://www.pkslow.com/">南瓜慢说</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BootStrap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JavaWeb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>js</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springboot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springcloud</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SSM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其他</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>性能测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>笔记整理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软件测试</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="All 面试 "
+           href="/2020/06/21/%E9%9D%A2%E8%AF%95-%E7%AE%80%E5%8E%86%E5%88%B6%E4%BD%9C%E4%B8%93%E9%A2%98/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="面试+简历制作专题">面试+简历制作专题</span>
+            <span class="post-date" title="2020-06-21 08:10:38">2020/06/21</span>
+        </a>
+        
+        <a id="top" class="All 笔记整理 "
+           href="/2020/06/25/Xmind%E6%B1%87%E6%80%BB%E6%89%80%E6%9C%89%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Xmind汇总所有知识点">Xmind汇总所有知识点</span>
+            <span class="post-date" title="2020-06-25 15:43:24">2020/06/25</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/14/MySQL%E8%BF%9B%E9%98%B604-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶04-索引的使用">MySQL进阶04-索引的使用</span>
+            <span class="post-date" title="2020-07-14 22:03:04">2020/07/14</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/06/MySQL%E8%BF%9B%E9%98%B603-MySQL%E4%BC%98%E5%8C%96/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶03-MySQL优化">MySQL进阶03-MySQL优化</span>
+            <span class="post-date" title="2020-07-06 15:21:16">2020/07/06</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B602-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶02(存储引擎)">MySQL进阶02(存储引擎)</span>
+            <span class="post-date" title="2020-07-04 21:52:31">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B601-%E7%B4%A2%E5%BC%95-%E8%A7%86%E5%9B%BE-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶01(索引-视图-存储过程)">MySQL进阶01(索引-视图-存储过程)</span>
+            <span class="post-date" title="2020-07-04 21:41:15">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/%E4%BD%A0%E4%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%90%97/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="你会单元测试吗">你会单元测试吗</span>
+            <span class="post-date" title="2020-06-12 22:17:41">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/SpringBoot%E6%95%B4%E5%90%88JustAuth%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合JustAuth第三方登录">SpringBoot整合JustAuth第三方登录</span>
+            <span class="post-date" title="2020-06-12 12:52:15">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 面试 "
+           href="/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="Java后端学习路线">Java后端学习路线</span>
+            <span class="post-date" title="2020-11-01 15:43:10">2020/11/01</span>
+        </a>
+        
+        <a id="top" class="All dubbo "
+           href="/2020/08/23/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6-Dubbo/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="分布式RPC框架-Dubbo">分布式RPC框架-Dubbo</span>
+            <span class="post-date" title="2020-08-23 13:01:18">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/10/21/%E5%8D%83%E7%BE%BD%E8%BF%99%E4%B8%A4%E5%B9%B4/"
+           data-tag="大学"
+           data-author="" >
+            <span class="post-title" title="千羽这两年..">千羽这两年..</span>
+            <span class="post-date" title="2020-10-21 20:47:42">2020/10/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/25/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法">推荐算法</span>
+            <span class="post-date" title="2020-09-25 22:14:36">2020/09/25</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/09/07/cloud-02-feign-gateway-bus/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-02-feign-gateway-bus">cloud-02-feign-gateway-bus</span>
+            <span class="post-date" title="2020-09-07 20:20:25">2020/09/07</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/09/07/%E5%8D%83%E7%BE%BDJava%E5%BC%80%E5%8F%91%E7%9A%84%E5%AE%9E%E4%B9%A0%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"
+           data-tag="springboot"
+           data-author="" >
+            <span class="post-title" title="千羽Java开发的实习经验分享">千羽Java开发的实习经验分享</span>
+            <span class="post-date" title="2020-09-07 13:28:44">2020/09/07</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/03/Java%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E4%B9%8B%E7%81%AB%E7%84%B0%E5%9B%BE/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="Java性能分析之火焰图">Java性能分析之火焰图</span>
+            <span class="post-date" title="2020-09-03 23:14:47">2020/09/03</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-02-RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-02-RabbitMQ集群搭建">RabbitMQ-02-RabbitMQ集群搭建</span>
+            <span class="post-date" title="2020-08-23 14:56:07">2020/08/23</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-01-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-01-基础入门">RabbitMQ-01-基础入门</span>
+            <span class="post-date" title="2020-08-23 14:54:04">2020/08/23</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-01-Eureka-Ribbon-hystrix">cloud-01-Eureka-Ribbon-hystrix</span>
+            <span class="post-date" title="2020-08-23 14:05:11">2020/08/23</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/23/%E4%BD%A0%E5%9B%9E%E5%8E%BB%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BRESTful%E9%A3%8E%E6%A0%BC/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="你回去了解一下RESTful风格">你回去了解一下RESTful风格</span>
+            <span class="post-date" title="2020-08-23 11:50:25">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/keymap-win%E8%BD%ACmac/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="keymap-win转mac">keymap-win转mac</span>
+            <span class="post-date" title="2020-08-23 11:41:21">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-07-typeof-null-undefined/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-07-typeof-null-undefined">js-07-typeof-null-undefined</span>
+            <span class="post-date" title="2020-08-23 10:20:40">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-04-break%E5%92%8Ccontinue/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-04-break和continue">js-04-break和continue</span>
+            <span class="post-date" title="2020-08-23 10:15:47">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-06-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-06-判断语句">js-06-判断语句</span>
+            <span class="post-date" title="2020-08-23 10:08:50">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-05-%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-05-字符串">js-05-字符串</span>
+            <span class="post-date" title="2020-08-23 10:08:42">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-03-%E5%AF%B9%E8%B1%A1/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-03-对象">js-03-对象</span>
+            <span class="post-date" title="2020-08-23 10:08:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-02-基本语法">js-02-基本语法</span>
+            <span class="post-date" title="2020-08-23 10:07:58">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-01-%E5%85%A5%E9%97%A8/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-01-入门">js-01-入门</span>
+            <span class="post-date" title="2020-08-23 10:07:34">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-23 00:33:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/22/docker-12-k8s%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-12-k8s部署SpringCloud">docker-12-k8s部署SpringCloud</span>
+            <span class="post-date" title="2020-08-22 23:55:18">2020/08/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/22/SpringBoot%E6%95%B4%E5%90%88Shiro/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合Shiro">SpringBoot整合Shiro</span>
+            <span class="post-date" title="2020-08-22 22:21:03">2020/08/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/08/19/Java%E5%9F%BA%E7%A1%8028-%E5%B7%A9%E5%9B%BA/"
+           data-tag="Java基础,JavaWeb"
+           data-author="" >
+            <span class="post-title" title="Java基础28-巩固">Java基础28-巩固</span>
+            <span class="post-date" title="2020-08-19 09:12:51">2020/08/19</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/18/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"
+           data-tag="性能测试"
+           data-author="" >
+            <span class="post-title" title="性能测试">性能测试</span>
+            <span class="post-date" title="2020-08-18 01:02:12">2020/08/18</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-09-%E5%86%99Dockerfile%E5%B9%B6%E4%B8%8A%E4%BC%A0DockerHub/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-09-写Dockerfile并上传DockerHub">docker-09-写Dockerfile并上传DockerHub</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-10-%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9A%E9%95%9C%E5%83%8F%E7%A7%81%E6%9C%8D/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-10-搭建企业镜像私服">docker-10-搭建企业镜像私服</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-11-Rancher%E6%9D%A5%E4%BA%86/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-11-Rancker来了">docker-11-Rancker来了</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-01-基础知识">接口测试-01-基础知识</span>
+            <span class="post-date" title="2020-08-17 01:02:18">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-02-Jmeter">接口测试-02-Jmeter</span>
+            <span class="post-date" title="2020-08-17 01:02:12">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-01-%E5%AE%89%E8%A3%85docker/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-01-安装docker">docker-01-安装docker</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-04-docker-compose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-04-docker-compose">docker-04-docker-compose</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-02-docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-02-docker应用部署">docker-02-docker应用部署</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-05-docker 私有仓库">docker-05-docker 私有仓库</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-03-dockerfile/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-03-dockerfile">docker-03-dockerfile</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-06-docker%E9%83%A8%E7%BD%B2Springboot/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-06-docker部署Springboot">docker-06-docker部署Springboot</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/11/docker-08-%E7%BC%96%E5%86%99dockerCompose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-08-编写dockerCompose">docker-08-编写dockerCompose</span>
+            <span class="post-date" title="2020-08-11 08:03:09">2020/08/11</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/07/12/powermock%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="初始Mockito">初始Mockito</span>
+            <span class="post-date" title="2020-07-12 11:32:28">2020/07/12</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/07/06/JDBC/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="JDBC">JDBC</span>
+            <span class="post-date" title="2020-07-06 15:57:29">2020/07/06</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/06/24/docker-07-docker%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-07-docker部署SpringCloud">docker-07-docker部署SpringCloud</span>
+            <span class="post-date" title="2020-06-24 08:03:09">2020/06/24</span>
+        </a>
+        
+        <a  class="All 笔记整理 "
+           href="/2020/06/18/%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9C%80%E8%A6%81%E4%BC%9A%E4%BB%80%E4%B9%88/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="后端工程师需要会什么?">后端工程师需要会什么?</span>
+            <span class="post-date" title="2020-06-18 16:03:07">2020/06/18</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/06/18/MySql%E5%85%A5%E9%97%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySql入门">MySql入门</span>
+            <span class="post-date" title="2020-06-18 10:18:26">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/BootStrap/"
+           data-tag="BootStrap"
+           data-author="" >
+            <span class="post-title" title="BootStrap">BootStrap</span>
+            <span class="post-date" title="2020-06-18 10:01:45">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/Jquery/"
+           data-tag="css,js"
+           data-author="" >
+            <span class="post-title" title="Jquery">Jquery</span>
+            <span class="post-date" title="2020-06-18 09:45:10">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/CSS-Js%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="CSS-Js入门">CSS-Js入门</span>
+            <span class="post-date" title="2020-06-18 09:23:20">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/HTML%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="HTML入门">HTML入门</span>
+            <span class="post-date" title="2020-06-18 09:07:56">2020/06/18</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/06/17/Eclipse%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8/"
+           data-tag="其他"
+           data-author="" >
+            <span class="post-title" title="Eclipse快捷键大全">Eclipse快捷键大全</span>
+            <span class="post-date" title="2020-06-17 16:54:56">2020/06/17</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8027-%E5%8F%8D%E5%B0%84-JDK%E6%96%B0%E7%89%B9%E6%80%A7/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础27-反射-JDK新特性">Java基础27-反射-JDK新特性</span>
+            <span class="post-date" title="2020-06-16 12:24:25">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8026-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础26-网络编程">Java基础26-网络编程</span>
+            <span class="post-date" title="2020-06-16 12:23:06">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8025-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础25-多线程-下">Java基础25-多线程-下</span>
+            <span class="post-date" title="2020-06-16 12:22:52">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8024-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8A/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础24-多线程-上">Java基础24-多线程-上</span>
+            <span class="post-date" title="2020-06-16 12:22:41">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8023-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础23-递归练习">Java基础23-递归练习</span>
+            <span class="post-date" title="2020-06-16 12:21:56">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8022-IO%E5%85%B6%E4%BB%96%E6%B5%81-Properties/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础22-IO其他流-Properties">Java基础22-IO其他流-Properties</span>
+            <span class="post-date" title="2020-06-16 12:21:12">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8021-IO%E5%AD%97%E7%AC%A6%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础21-IO字符流">Java基础21-IO字符流</span>
+            <span class="post-date" title="2020-06-16 12:19:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8020-IO%E5%AD%97%E8%8A%82%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础20-IO字节流">Java基础20-IO字节流</span>
+            <span class="post-date" title="2020-06-16 12:17:38">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8019-%E5%BC%82%E5%B8%B8-IO%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础19-异常-IO流">Java基础19-异常-IO流</span>
+            <span class="post-date" title="2020-06-16 12:13:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8018-Map%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础18-Map集合">Java基础18-Map集合</span>
+            <span class="post-date" title="2020-06-16 11:59:30">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8017-Set%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础17-Set集合">Java基础17-Set集合</span>
+            <span class="post-date" title="2020-06-16 11:15:22">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8016-List%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础16-List集合">Java基础16-List集合</span>
+            <span class="post-date" title="2020-06-16 10:55:01">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8015-Colletion%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础15-Colletion集合">Java基础15-Colletion集合</span>
+            <span class="post-date" title="2020-06-16 10:14:26">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8014-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础14-正则表达式">Java基础14-正则表达式</span>
+            <span class="post-date" title="2020-06-16 10:06:18">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8013-StringBuffer/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础13-StringBuffer">Java基础13-StringBuffer</span>
+            <span class="post-date" title="2020-06-16 09:42:03">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8012-String%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础12-String类">Java基础12-String类</span>
+            <span class="post-date" title="2020-06-16 08:11:21">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8011-Eclipse-Object/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础11-Eclipse-Object">Java基础11-Eclipse-Object</span>
+            <span class="post-date" title="2020-06-16 07:47:42">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8010-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础10-面向对象-匿名内部类">Java基础10-面向对象-匿名内部类</span>
+            <span class="post-date" title="2020-06-15 23:32:04">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8009-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础09-面向对象-多态-接口">Java基础09-面向对象-多态-接口</span>
+            <span class="post-date" title="2020-06-15 12:46:01">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8008-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础08-面向对象">Java基础08-面向对象</span>
+            <span class="post-date" title="2020-06-15 12:22:32">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/07/Boot%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B%E5%9B%BE/"
+           data-tag="SSM"
+           data-author="" >
+            <span class="post-title" title="Boot客户端管理系统流程图">Boot客户端管理系统流程图</span>
+            <span class="post-date" title="2020-06-07 17:03:11">2020/06/07</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/05/27/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9AMysql%E5%90%97/"
+           data-tag="Mysql"
+           data-author="" >
+            <span class="post-title" title="你真的会Mysql吗">你真的会Mysql吗</span>
+            <span class="post-date" title="2020-05-27 23:58:15">2020/05/27</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8007-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础07-面向对象-方法">Java基础07-面向对象-方法</span>
+            <span class="post-date" title="2020-05-22 16:39:11">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8006-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础06-二维数组">Java基础06-二维数组</span>
+            <span class="post-date" title="2020-05-22 15:50:47">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8005-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础05-一维数组">Java基础05-一维数组</span>
+            <span class="post-date" title="2020-05-22 15:49:45">2020/05/22</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9502-%E6%A0%88%E5%A0%86-%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法02-栈堆-队列">数据结构与算法02-栈堆-队列</span>
+            <span class="post-date" title="2020-05-21 16:21:48">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9501-%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法01-概念">数据结构与算法01-概念</span>
+            <span class="post-date" title="2020-05-21 16:18:09">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9503-%E6%A0%91-%E4%B8%8A/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法03-树-上">数据结构与算法03-树-上</span>
+            <span class="post-date" title="2020-05-21 16:15:29">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8004-for%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础04-for循环">Java基础04-for循环</span>
+            <span class="post-date" title="2020-05-21 10:49:10">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8002-%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E5%8F%98%E9%87%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础02(进制运算&amp;数据类型&amp;变量)">Java基础02(进制运算&amp;数据类型&amp;变量)</span>
+            <span class="post-date" title="2020-05-21 09:12:51">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础01(计算机基础)">Java基础01(计算机基础)</span>
+            <span class="post-date" title="2020-05-21 08:54:02">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8003-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础03-逻辑运算符">Java基础03-逻辑运算符</span>
+            <span class="post-date" title="2020-05-21 07:47:37">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/19/%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="那些年踩过的坑">那些年踩过的坑</span>
+            <span class="post-date" title="2020-05-19 22:34:46">2020/05/19</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/16/SpringBoot-Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot-Vue前后端分离">SpringBoot-Vue前后端分离</span>
+            <span class="post-date" title="2020-05-16 21:25:17">2020/05/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/11/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门2">SpringBoot快速入门2</span>
+            <span class="post-date" title="2020-05-11 12:25:18">2020/05/11</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/04/12/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门1">SpringBoot快速入门1</span>
+            <span class="post-date" title="2020-04-12 16:14:22">2020/04/12</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-BootStrap" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">BootStrap</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            <a  data-rel="前端">前端</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">BootStrap</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-08-30 13:35:34'>2020-06-18 10:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:4.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8F%8A%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">掌握什么是响应式及响应式的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1BootStrap%E7%9A%84%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F"><span class="toc-text">掌握BootStrap的栅格系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3BootStrap%E7%9A%84%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6%E5%8F%8AJS%E6%8E%A7%E4%BB%B6"><span class="toc-text">了解BootStrap的其他组件及JS控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C%E6%A1%88%E4%BE%8B"><span class="toc-text">表单校验案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90"><span class="toc-text">技术分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%88%86%E6%9E%90"><span class="toc-text">步骤分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8JQuery%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2"><span class="toc-text">使用JQuery发送请求局部刷新页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8BootStrap%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%87%BA%E6%9D%A5"><span class="toc-text">使用BootStrap开发一个响应式的页面出来</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90-1"><span class="toc-text">技术分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#BootStap%E6%A6%82%E8%BF%B0"><span class="toc-text">BootStap概述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#BootStrap%E7%9A%84%E5%85%A5%E9%97%A8%E5%BC%80%E5%8F%91"><span class="toc-text">BootStrap的入门开发</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%88%86%E6%9E%90-1"><span class="toc-text">步骤分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8BootStrap%E5%B8%83%E5%B1%80%E7%BD%91%E7%AB%99%E9%A6%96%E9%A1%B5"><span class="toc-text">使用BootStrap布局网站首页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-1"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90-2"><span class="toc-text">技术分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%88%86%E6%9E%90-2"><span class="toc-text">步骤分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E5%A4%A9%E5%89%8D%E7%AB%AF%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93"><span class="toc-text">五天前端内容总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="掌握什么是响应式及响应式的原理"><a href="#掌握什么是响应式及响应式的原理" class="headerlink" title="掌握什么是响应式及响应式的原理"></a>掌握什么是响应式及响应式的原理</h3><a id="more"></a>
+<h3 id="掌握BootStrap的栅格系统"><a href="#掌握BootStrap的栅格系统" class="headerlink" title="掌握BootStrap的栅格系统"></a>掌握BootStrap的栅格系统</h3><h3 id="了解BootStrap的其他组件及JS控件"><a href="#了解BootStrap的其他组件及JS控件" class="headerlink" title="了解BootStrap的其他组件及JS控件"></a>了解BootStrap的其他组件及JS控件</h3><p>基本的过滤器:    择器:过滤器   $(“div:first”)</p>
+<p>​    :first : 找出第一个元素</p>
+<p>​    :last  找出最后一个元素</p>
+<p>​    :even   找出偶数索引</p>
+<p>​    :odd   找出奇数</p>
+<p>​    :gt(index)   greater-than大于</p>
+<p>​    :lt(index)    小于</p>
+<p>​    :eq(index)  等于</p>
+<p>表单选择器:</p>
+<p>​    :input  找出所有的输入项,  textarea select button</p>
+<p>​    :password</p>
+<p>​    :text</p>
+<p>​    :radio</p>
+<p>表单对象属性的过滤器</p>
+<p>​    :selected</p>
+<p>​    :checked</p>
+<p>常用函数:</p>
+<p>​    属性prop()    properties</p>
+<p>​        如果传入一个参数  就是获取</p>
+<p>​    prop(“src”,”../img/1.jpg”);  </p>
+<p>​        设置图片路径</p>
+<p>​    attr : 操作一些自定义的属性  <img  abc='123' /></p>
+<p>​    prop: 通常是用来操作元素固有属性的 ,建议大家使用prop来操作属性</p>
+<p>​    css() ; 修改css样式</p>
+<p>​    addClass()  : 添加一个class样式</p>
+<p>​    removeClass() : 移除</p>
+<p>​    </p>
+<p>​    blur : 绑定失去焦点</p>
+<p>​    focus: 绑定获得焦点事件</p>
+<p>​    click:</p>
+<p>​    dblclick</p>
+<p>​    change</p>
+<p>​    </p>
+<p>​    append    :  给自己添加儿子</p>
+<p>​    appendTo :  把自己添加到别人家</p>
+<p>​    prepend :  在自己子节点最前面添加子节点</p>
+<p>​    after  : 在自己后面添加一个兄弟</p>
+<p>​    before: 在自己前面添加一个兄弟</p>
+<p>​    </p>
+<p>​    $(“数组对象”).each(function(index,data))</p>
+<p>​    $.each(arr,function(index,data))</p>
+<p>​    </p>
+<h3 id="表单校验案例"><a href="#表单校验案例" class="headerlink" title="表单校验案例"></a>表单校验案例</h3><h4 id="技术分析"><a href="#技术分析" class="headerlink" title="技术分析"></a>技术分析</h4><ul>
+<li>trigger  :  触发事件,但是会执行类似浏览将光标移到输入框内的这种浏览器默认行为</li>
+<li>triggerHandler : 仅仅只会触发事件所对应的函数</li>
+<li>is()</li>
+</ul>
+<h4 id="步骤分析"><a href="#步骤分析" class="headerlink" title="步骤分析"></a>步骤分析</h4><ol>
+<li>首先给必填项,添加尾部添加一个小红点</li>
+<li>获取用户输入的信息,做相应的校验</li>
+<li>事件: 获得焦点, 失去焦点, 按键抬起</li>
+<li>表单提交的事件</li>
+</ol>
+<h3 id="使用JQuery发送请求局部刷新页面"><a href="#使用JQuery发送请求局部刷新页面" class="headerlink" title="使用JQuery发送请求局部刷新页面"></a>使用JQuery发送请求局部刷新页面</h3><p>​    数据交换格式:</p>
+<p>​        json</p>
+<p>​        xml</p>
+<p>​    </p>
+<ul>
+<li><p>什么是JSON</p>
+<p><a target="_blank" rel="noopener" href="http://baike.baidu.com/view/136475.htm">JSON</a>(<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/16168.htm">JavaScript</a> Object Notation) 是一种轻量级的数据交换格式。它基于<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/810176.htm">ECMAScript</a>的一个子集。 JSON采用完全独立于语言的文本格式，但是也使用了类似于C语言家族的习惯（包括<a target="_blank" rel="noopener" href="http://baike.baidu.com/subview/10075/6770152.htm">C</a>、C++、<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/6590.htm">C#</a>、<a target="_blank" rel="noopener" href="http://baike.baidu.com/subview/29/12654100.htm">Java</a>、JavaScript、<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/46614.htm">Perl</a>、<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/21087.htm">Python</a>等）。这些特性使JSON成为理想的数据交换语言。 易于人阅读和编写，同时也易于机器解析和生成(一般用于提升网络传输速率)。</p>
+</li>
+<li><p>JSON格式</p>
+<p>​    JSON对象</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; key1:value&#125;   </span><br><span class="line">&#123;<span class="attr">&quot;username&quot;</span>:<span class="string">&quot;zhangsan&quot;</span>,<span class="attr">&quot;password&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    JSON数组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123; key1:value&#125;,&#123; key1:value&#125;,&#123; key1:value&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+<h3 id="使用BootStrap开发一个响应式的页面出来"><a href="#使用BootStrap开发一个响应式的页面出来" class="headerlink" title="使用BootStrap开发一个响应式的页面出来"></a>使用BootStrap开发一个响应式的页面出来</h3><h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><p>开发一套响应式页面.让他能够在各种设备上显示正常,提升用户体验</p>
+<h4 id="技术分析-1"><a href="#技术分析-1" class="headerlink" title="技术分析"></a>技术分析</h4><h5 id="BootStap概述"><a href="#BootStap概述" class="headerlink" title="BootStap概述"></a>BootStap概述</h5><ul>
+<li><p>什么是BootStrap</p>
+<p>​</p>
+</li>
+<li><p>BootStrap有什么作用</p>
+<ul>
+<li>复制粘贴, 能够提高开发人员的工作效率</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>什么是响应式页面</li>
+</ul>
+<ul>
+<li><p>适应不同的分辨率显示不同样式,提高用户的体验</p>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li>BootStrap的中文网<ul>
+<li><a target="_blank" rel="noopener" href="http://www.bootcss.com/">http://www.bootcss.com</a></li>
+</ul>
+</li>
+<li>下载BootStrap</li>
+<li>BootStrap结构<ul>
+<li>全局CSS<ul>
+<li>bootStrap中已经定义好了一套CSS的样式表</li>
+</ul>
+</li>
+<li>组件<ul>
+<li>BootStrap定义的一套按钮,导航条等组件</li>
+</ul>
+</li>
+<li>JS插件<ul>
+<li>BootStrap定义了一套JS的插件,这些插件已经默认实现了很多种效果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="BootStrap的入门开发"><a href="#BootStrap的入门开发" class="headerlink" title="BootStrap的入门开发"></a>BootStrap的入门开发</h5><ul>
+<li>引入相关的头文件</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 最新版本的 Bootstrap 核心 CSS 文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../css/bootstrap.css&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--需要引入JQuery--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/jquery-1.11.0.js&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/bootstrap.js&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>BootStrap的布局容器</li>
+</ul>
+<p><code>.container</code> 类用于固定宽度并支持响应式布局的容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>.container-fluid</code> 类用于 100% 宽度，占据全部视口（viewport）的容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>校验表单扩展:</p>
+<p>trigger  : 触发浏览器默认行为</p>
+<p>triggerHandler : 不会触发</p>
+<p>is : 判断</p>
+<p>find : 查找</p>
+<p>老黄历:</p>
+<p>什么json: 轻量级的数据交换格式</p>
+<p>json对象:  {“username”:”zhangsan”}</p>
+<p>json数组: [ {“username”:”zhangsan”}, {“username”:”zhangsan”}, {“username”:”zhangsan”}]</p>
+<p>ajax异步请求: </p>
+<p>​    同步和异步</p>
+<ul>
+<li><p>row</p>
+<p> Bootstrap 栅格系统的工作原理：</p>
+<ul>
+<li>“行（row）”必须包含在 <code>.container</code> （固定宽度）或 <code>.container-fluid</code> （100% 宽度）中，以便为其赋予合适的排列（aligment）和内补（padding）。</li>
+<li>通过“行（row）”在水平方向创建一组“列（column）”。</li>
+<li>你的内容应当放置于“列（column）”内，并且，只有“列（column）”可以作为行（row）”的直接子元素。</li>
+<li>类似 <code>.row</code> 和 <code>.col-xs-4</code> 这种预定义的类，可以用来快速创建栅格布局。Bootstrap 源码中定义的 mixin 也可以用来创建语义化的布局。</li>
+<li>通过为“列（column）”设置 <code>padding</code> 属性，从而创建列与列之间的间隔（gutter）。通过为 <code>.row</code> 元素设置负值 <code>margin</code> 从而抵消掉为 <code>.container</code> 元素设置的 <code>padding</code>，也就间接为“行（row）”所包含的“列（column）”抵消掉了<code>padding</code></li>
+</ul>
+<p>​</p>
+</li>
+<li><p>BootStrap的栅格系统</p>
+<ul>
+<li>响应式设计: 这种设计依赖于CSS3中的媒体查询</li>
+<li>栅格样式:<ul>
+<li>设备分辨率大于1200 使用lg样式</li>
+<li>设备分辨率大于992 &lt; 1200 使用md样式</li>
+<li>设备分辨率大于768 &lt; 992  使用sm样式</li>
+<li>设备分辨率小于768使用xs样式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BootStrap的全局CSS</p>
+<ul>
+<li>定义了一套CSS<ul>
+<li>对页面中的元素进行定义</li>
+<li>列表元素,表单,按钮,图片…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="步骤分析-1"><a href="#步骤分析-1" class="headerlink" title="步骤分析"></a>步骤分析</h4><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h4 id="使用BootStrap布局网站首页"><a href="#使用BootStrap布局网站首页" class="headerlink" title="使用BootStrap布局网站首页"></a>使用BootStrap布局网站首页</h4><h4 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h4><p>请使用BootStrap对我们的首页进行优化</p>
+<h4 id="技术分析-2"><a href="#技术分析-2" class="headerlink" title="技术分析"></a>技术分析</h4><h4 id="步骤分析-2"><a href="#步骤分析-2" class="headerlink" title="步骤分析"></a>步骤分析</h4><blockquote>
+<ol>
+<li>新建一个HTML页面.引入bootStrap相关的js和CSS</li>
+<li>定义一个整体的div, 将整体的div分成8个部分</li>
+<li>完成没部分的内容显示</li>
+</ol>
+</blockquote>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">			准备工作:</span></span><br><span class="line"><span class="comment">			&lt;meta name=&#x27;viewport&#x27;&gt;</span></span><br><span class="line"><span class="comment">			1.导入bootstrap css文件</span></span><br><span class="line"><span class="comment">			2.导入JQuery</span></span><br><span class="line"><span class="comment">			3.bootstrap.js</span></span><br><span class="line"><span class="comment">			</span></span><br><span class="line"><span class="comment">			4.写一个div  class = container 支持响应式的布局容器</span></span><br><span class="line"><span class="comment">			</span></span><br><span class="line"><span class="comment">		--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../css/bootstrap.min.css&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">			</span></span><br><span class="line"><span class="comment">		jQuery文件。务必在bootstrap.min.js 之前引入</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../js/jquery-1.11.0.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../js/bootstrap.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-4&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/logo2.png&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-4 hidden-xs&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/header.png&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-4&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>购物车<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">&lt;!--菜单--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-12&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;navbar navbar-inverse&quot;</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container-fluid&quot;</span>&gt;</span></span><br><span class="line">							<span class="comment">&lt;!-- Brand and toggle get grouped for better mobile display --&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;navbar-header&quot;</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;navbar-toggle collapsed&quot;</span> <span class="attr">data-toggle</span>=<span class="string">&quot;collapse&quot;</span> <span class="attr">data-target</span>=<span class="string">&quot;#bs-example-navbar-collapse-1&quot;</span>&gt;</span></span><br><span class="line">						        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sr-only&quot;</span>&gt;</span>Toggle navigation<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">						        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;icon-bar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">						        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;icon-bar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">						        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;icon-bar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">						      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;navbar-brand&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">							<span class="comment">&lt;!-- Collect the nav links, forms, and other content for toggling --&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;collapse navbar-collapse&quot;</span> <span class="attr">id</span>=<span class="string">&quot;bs-example-navbar-collapse-1&quot;</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;nav navbar-nav&quot;</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>手机数码<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>鞋靴箱包<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>电脑办公<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;dropdown&quot;</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dropdown-toggle&quot;</span> <span class="attr">data-toggle</span>=<span class="string">&quot;dropdown&quot;</span>&gt;</span>所有分类 <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;caret&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;dropdown-menu&quot;</span> <span class="attr">role</span>=<span class="string">&quot;menu&quot;</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">												<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>手机数码<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">												<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>鞋靴箱包<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">												<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>电脑办公<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;divider&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">												<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Separated link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;divider&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">												<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>One more separated link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">											<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;navbar-form navbar-right&quot;</span> <span class="attr">role</span>=<span class="string">&quot;search&quot;</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">										<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入要搜索的商品&quot;</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default&quot;</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">							<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="comment">&lt;!-- /.navbar-collapse --&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!-- /.container-fluid --&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;carousel-example-generic&quot;</span> <span class="attr">class</span>=<span class="string">&quot;carousel slide&quot;</span> <span class="attr">data-ride</span>=<span class="string">&quot;carousel&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Indicators --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span> <span class="attr">class</span>=<span class="string">&quot;carousel-indicators&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">data-target</span>=<span class="string">&quot;#carousel-example-generic&quot;</span> <span class="attr">data-slide-to</span>=<span class="string">&quot;0&quot;</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">data-target</span>=<span class="string">&quot;#carousel-example-generic&quot;</span> <span class="attr">data-slide-to</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">data-target</span>=<span class="string">&quot;#carousel-example-generic&quot;</span> <span class="attr">data-slide-to</span>=<span class="string">&quot;2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Wrapper for slides --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-inner&quot;</span> <span class="attr">role</span>=<span class="string">&quot;listbox&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item active&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/1.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/2.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/3.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Controls --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;left carousel-control&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#carousel-example-generic&quot;</span> <span class="attr">role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-slide</span>=<span class="string">&quot;prev&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-chevron-left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sr-only&quot;</span>&gt;</span>Previous<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;right carousel-control&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#carousel-example-generic&quot;</span> <span class="attr">role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-slide</span>=<span class="string">&quot;next&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-chevron-right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sr-only&quot;</span>&gt;</span>Next<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">&lt;!--最新商品这里--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-12&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">h3</span>&gt;</span>最新商品<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../images/title2.jpg&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">&lt;!--商品部分 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--左边div--&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 hidden-sm hidden-xs&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/big01.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--右边div--&gt;</span>	</span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-10&quot;</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!--上面部分--&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--中等广告图--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-6&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/middle01.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						</span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!--下面部分--&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-12&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/ad.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			<span class="comment">&lt;!--最新商品这里--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-12&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">h3</span>&gt;</span>最新商品<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../images/title2.jpg&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">&lt;!--商品部分 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--左边div--&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 hidden-sm hidden-xs&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/big01.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!--右边div--&gt;</span>	</span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-10&quot;</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!--上面部分--&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--中等广告图--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-6&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/middle01.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						</span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!--下面部分--&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!--商品项--&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 col-xs-4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../products/hao/small01.jpg&quot;</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>豆浆机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">p</span>&gt;</span>$998<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">						</span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			<span class="comment">&lt;!--页脚广告--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../image/footer.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!--网站声明--&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>关于我们<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>联系我们<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>招贤纳士<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>法律声明<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>友情链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>支付方式<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>配送方式<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>服务声明<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itheima.com&quot;</span>&gt;</span>广告声明<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">					<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">					Copyright © 2005-2016 传智商城 版权所有</span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="五天前端内容总结"><a href="#五天前端内容总结" class="headerlink" title="五天前端内容总结"></a>五天前端内容总结</h3><ul>
+<li>JQ方式校验表单(要求做出来)</li>
+<li>json :  (了解)<ul>
+<li>json对象 {}</li>
+<li>json数组 [{},{}]</li>
+</ul>
+</li>
+<li>$.get(url,function(data){}) (了解)</li>
+<li>bootstrap:  Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。<ul>
+<li>全局CSS样式: css样式<ul>
+<li>栅格系统:<ul>
+<li>将屏幕划分成12个格子,12列</li>
+<li>class=’row’ 当前是行</li>
+<li>行里面放的是列 col-屏幕分辨率-数字    (每一种分辨率后的数字总和必须是等于12,如果超过12,另起一行)</li>
+<li>col-lg-数字: 在超宽屏幕上使用</li>
+<li>col-md-数字: 在中等屏幕上,PC电脑</li>
+<li>col-sm-数字:  在平板电脑上</li>
+<li>col-xs-数字:  在手机上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>组件:  导航条 , 进度条, 字体</li>
+<li>javascript插件 : 轮播图</li>
+<li>复制粘贴</li>
+</ul>
+</li>
+<li>什么是响应式: 会根据不同的分辨率去显示不同页面结构,提高用户体验</li>
+</ul>
+<ul>
+<li><p>HTML: 超文本标记语言: 设计网页,决定了网页的结构</p>
+</li>
+<li><p>CSS:  层叠样式表 ,主要是用来美化页面, 将美化和HTML代码进行分离,提高代码复用性</p>
+</li>
+<li><p>javascript: 脚本语言,由浏览器解释执行, 弱类型语言(var i), 提供用户交互</p>
+</li>
+<li><p>jquery:  javascript函数库,进一步的封装</p>
+<ul>
+<li><p>选择器:</p>
+<ul>
+<li>ID选择器</li>
+<li>类选择器</li>
+<li>元素选择器</li>
+<li>通配符选择器</li>
+<li>选择器分组</li>
+</ul>
+</li>
+<li><p>层级选择器</p>
+<ul>
+<li>后代选择器</li>
+<li>子元素选择器</li>
+<li>相邻兄弟选择器</li>
+<li>兄弟选择器 : 找出所有的弟弟</li>
+</ul>
+</li>
+<li><p>属性选择器:</p>
+<ul>
+<li>选择器[属性名称=’属性的值’]</li>
+</ul>
+</li>
+<li><p>表单选择器</p>
+<ul>
+<li>:input</li>
+<li>:text</li>
+<li>:password</li>
+</ul>
+<p>body &gt; div &gt; div:nth-child(7) &gt; div:nth-child(3) &gt; div:nth-child(8)</p>
+</li>
+<li><p>基本的过滤器</p>
+<ul>
+<li>:first</li>
+<li>:last</li>
+<li>:even</li>
+<li>:odd</li>
+<li>:gt</li>
+<li>:lt</li>
+<li>:eq</li>
+</ul>
+</li>
+<li><p>表单对象属性</p>
+<ul>
+<li>:selected</li>
+<li>:checked</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1210331079@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">Title:</span>BootStrap</p>
+    <p><span class="copy-title">Count:</span><span class="post-count">4.6k</span></p>
+    <p><span class="copy-title">Author:</span><a  title="浅  悦">浅  悦</a></p>
+    <p><span class="copy-title">Created At:</span>2020-06-18, 10:01:45</p>
+    <p><span class="copy-title">Updated At:</span>2020-08-30, 13:35:34</p>
+    <span class="copy-title">Url:</span><a class="post-url" href="/2020/06/18/BootStrap/" title="BootStrap">https://nate-lin.gitee.io/2020/06/18/BootStrap/</a>
+    <p>
+        <span class="copy-title">Copyright:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#39;Attribution-non-commercial-shared in the same way 4.0&#39;</a> Reprint please keep the original link and author.
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 千羽
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>donation.headline</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:true,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+// 底部音乐
+<div style="position:absolute; bottom: 0; right: 0;">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29393038&auto=1&height=66"></iframe>
+</div>
+
+//右上角Github图标
+<a target="_blank" rel="noopener" href="https://github.com/nateshao" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80"
+         height="80"
+         viewBox="0 0 250 250"
+         style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+         aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                                                                                                                                                                                                                                                                                                    fill="currentColor"
+                                                                                                                                                                                                                                                                                                    class="octo-body">
+        </path>
+    </svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+
+</html>

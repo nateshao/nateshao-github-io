@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>docker-05-docker 私有仓库 | 浅悦的的编程时光</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="docker-05-docker 私有仓库 | 浅悦的的编程时光">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java后端学习路线">
+<meta property="og:url" content="https://nate-lin.gitee.io/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="浅悦的的编程时光">
+<meta property="og:description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-01T07:43:10.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:03:09.208Z">
+<meta property="article:author" content="浅  悦">
+<meta property="article:tag" content="笔记整理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="浅悦的的编程时光" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>浅  悦</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/nateshao" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/yong-yuan-de-da-an-9" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/u/4534135" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="juejin" href="https://juejin.im/user/5eaf74985188256d3c52d287" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-juejin"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1210331079@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(90)</small></div></li>
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(36)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(12)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="dubbo">dubbo<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="中间件">中间件<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="微服务">微服务<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记整理">笔记整理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="软件测试">软件测试<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="面试">面试<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/">About</a><a style="width: 50%"  class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_word_count" value="200.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://nateshao.gitee.io/">千羽</a></li>
+            
+            <li><a target="_blank" href="https://wallleap.cn/">Luwang</a></li>
+            
+            <li><a target="_blank" href="http://www.natehuang.cn/index">natehuang</a></li>
+            
+            <li><a target="_blank" href="http://yuyang.run/#/">阳哥在奔跑</a></li>
+            
+            <li><a target="_blank" href="https://www.lzhpo.com/">会打篮球的程序猿</a></li>
+            
+            <li><a target="_blank" href="https://nate-lin.gitee.io/">浅悦</a></li>
+            
+            <li><a target="_blank" href="https://qghost.gitee.io/blog/">Wyatex`s blog</a></li>
+            
+            <li><a target="_blank" href="https://www.pkslow.com/">南瓜慢说</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BootStrap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JavaWeb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>js</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springboot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springcloud</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SSM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其他</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>性能测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>笔记整理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软件测试</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="All 面试 "
+           href="/2020/06/21/%E9%9D%A2%E8%AF%95-%E7%AE%80%E5%8E%86%E5%88%B6%E4%BD%9C%E4%B8%93%E9%A2%98/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="面试+简历制作专题">面试+简历制作专题</span>
+            <span class="post-date" title="2020-06-21 08:10:38">2020/06/21</span>
+        </a>
+        
+        <a id="top" class="All 笔记整理 "
+           href="/2020/06/25/Xmind%E6%B1%87%E6%80%BB%E6%89%80%E6%9C%89%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Xmind汇总所有知识点">Xmind汇总所有知识点</span>
+            <span class="post-date" title="2020-06-25 15:43:24">2020/06/25</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/14/MySQL%E8%BF%9B%E9%98%B604-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶04-索引的使用">MySQL进阶04-索引的使用</span>
+            <span class="post-date" title="2020-07-14 22:03:04">2020/07/14</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/06/MySQL%E8%BF%9B%E9%98%B603-MySQL%E4%BC%98%E5%8C%96/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶03-MySQL优化">MySQL进阶03-MySQL优化</span>
+            <span class="post-date" title="2020-07-06 15:21:16">2020/07/06</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B602-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶02(存储引擎)">MySQL进阶02(存储引擎)</span>
+            <span class="post-date" title="2020-07-04 21:52:31">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B601-%E7%B4%A2%E5%BC%95-%E8%A7%86%E5%9B%BE-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶01(索引-视图-存储过程)">MySQL进阶01(索引-视图-存储过程)</span>
+            <span class="post-date" title="2020-07-04 21:41:15">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/%E4%BD%A0%E4%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%90%97/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="你会单元测试吗">你会单元测试吗</span>
+            <span class="post-date" title="2020-06-12 22:17:41">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/SpringBoot%E6%95%B4%E5%90%88JustAuth%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合JustAuth第三方登录">SpringBoot整合JustAuth第三方登录</span>
+            <span class="post-date" title="2020-06-12 12:52:15">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 面试 "
+           href="/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="Java后端学习路线">Java后端学习路线</span>
+            <span class="post-date" title="2020-11-01 15:43:10">2020/11/01</span>
+        </a>
+        
+        <a id="top" class="All dubbo "
+           href="/2020/08/23/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6-Dubbo/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="分布式RPC框架-Dubbo">分布式RPC框架-Dubbo</span>
+            <span class="post-date" title="2020-08-23 13:01:18">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/10/21/%E5%8D%83%E7%BE%BD%E8%BF%99%E4%B8%A4%E5%B9%B4/"
+           data-tag="大学"
+           data-author="" >
+            <span class="post-title" title="千羽这两年..">千羽这两年..</span>
+            <span class="post-date" title="2020-10-21 20:47:42">2020/10/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/25/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法">推荐算法</span>
+            <span class="post-date" title="2020-09-25 22:14:36">2020/09/25</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/09/07/cloud-02-feign-gateway-bus/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-02-feign-gateway-bus">cloud-02-feign-gateway-bus</span>
+            <span class="post-date" title="2020-09-07 20:20:25">2020/09/07</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/09/07/%E5%8D%83%E7%BE%BDJava%E5%BC%80%E5%8F%91%E7%9A%84%E5%AE%9E%E4%B9%A0%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"
+           data-tag="springboot"
+           data-author="" >
+            <span class="post-title" title="千羽Java开发的实习经验分享">千羽Java开发的实习经验分享</span>
+            <span class="post-date" title="2020-09-07 13:28:44">2020/09/07</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/03/Java%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E4%B9%8B%E7%81%AB%E7%84%B0%E5%9B%BE/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="Java性能分析之火焰图">Java性能分析之火焰图</span>
+            <span class="post-date" title="2020-09-03 23:14:47">2020/09/03</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-02-RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-02-RabbitMQ集群搭建">RabbitMQ-02-RabbitMQ集群搭建</span>
+            <span class="post-date" title="2020-08-23 14:56:07">2020/08/23</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-01-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-01-基础入门">RabbitMQ-01-基础入门</span>
+            <span class="post-date" title="2020-08-23 14:54:04">2020/08/23</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-01-Eureka-Ribbon-hystrix">cloud-01-Eureka-Ribbon-hystrix</span>
+            <span class="post-date" title="2020-08-23 14:05:11">2020/08/23</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/23/%E4%BD%A0%E5%9B%9E%E5%8E%BB%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BRESTful%E9%A3%8E%E6%A0%BC/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="你回去了解一下RESTful风格">你回去了解一下RESTful风格</span>
+            <span class="post-date" title="2020-08-23 11:50:25">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/keymap-win%E8%BD%ACmac/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="keymap-win转mac">keymap-win转mac</span>
+            <span class="post-date" title="2020-08-23 11:41:21">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-07-typeof-null-undefined/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-07-typeof-null-undefined">js-07-typeof-null-undefined</span>
+            <span class="post-date" title="2020-08-23 10:20:40">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-04-break%E5%92%8Ccontinue/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-04-break和continue">js-04-break和continue</span>
+            <span class="post-date" title="2020-08-23 10:15:47">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-06-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-06-判断语句">js-06-判断语句</span>
+            <span class="post-date" title="2020-08-23 10:08:50">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-05-%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-05-字符串">js-05-字符串</span>
+            <span class="post-date" title="2020-08-23 10:08:42">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-03-%E5%AF%B9%E8%B1%A1/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-03-对象">js-03-对象</span>
+            <span class="post-date" title="2020-08-23 10:08:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-02-基本语法">js-02-基本语法</span>
+            <span class="post-date" title="2020-08-23 10:07:58">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-01-%E5%85%A5%E9%97%A8/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-01-入门">js-01-入门</span>
+            <span class="post-date" title="2020-08-23 10:07:34">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-23 00:33:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/22/docker-12-k8s%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-12-k8s部署SpringCloud">docker-12-k8s部署SpringCloud</span>
+            <span class="post-date" title="2020-08-22 23:55:18">2020/08/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/22/SpringBoot%E6%95%B4%E5%90%88Shiro/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合Shiro">SpringBoot整合Shiro</span>
+            <span class="post-date" title="2020-08-22 22:21:03">2020/08/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/08/19/Java%E5%9F%BA%E7%A1%8028-%E5%B7%A9%E5%9B%BA/"
+           data-tag="Java基础,JavaWeb"
+           data-author="" >
+            <span class="post-title" title="Java基础28-巩固">Java基础28-巩固</span>
+            <span class="post-date" title="2020-08-19 09:12:51">2020/08/19</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/18/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"
+           data-tag="性能测试"
+           data-author="" >
+            <span class="post-title" title="性能测试">性能测试</span>
+            <span class="post-date" title="2020-08-18 01:02:12">2020/08/18</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-09-%E5%86%99Dockerfile%E5%B9%B6%E4%B8%8A%E4%BC%A0DockerHub/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-09-写Dockerfile并上传DockerHub">docker-09-写Dockerfile并上传DockerHub</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-10-%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9A%E9%95%9C%E5%83%8F%E7%A7%81%E6%9C%8D/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-10-搭建企业镜像私服">docker-10-搭建企业镜像私服</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-11-Rancher%E6%9D%A5%E4%BA%86/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-11-Rancker来了">docker-11-Rancker来了</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-01-基础知识">接口测试-01-基础知识</span>
+            <span class="post-date" title="2020-08-17 01:02:18">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-02-Jmeter">接口测试-02-Jmeter</span>
+            <span class="post-date" title="2020-08-17 01:02:12">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-01-%E5%AE%89%E8%A3%85docker/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-01-安装docker">docker-01-安装docker</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-04-docker-compose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-04-docker-compose">docker-04-docker-compose</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-02-docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-02-docker应用部署">docker-02-docker应用部署</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-05-docker 私有仓库">docker-05-docker 私有仓库</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-03-dockerfile/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-03-dockerfile">docker-03-dockerfile</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-06-docker%E9%83%A8%E7%BD%B2Springboot/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-06-docker部署Springboot">docker-06-docker部署Springboot</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/11/docker-08-%E7%BC%96%E5%86%99dockerCompose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-08-编写dockerCompose">docker-08-编写dockerCompose</span>
+            <span class="post-date" title="2020-08-11 08:03:09">2020/08/11</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/07/12/powermock%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="初始Mockito">初始Mockito</span>
+            <span class="post-date" title="2020-07-12 11:32:28">2020/07/12</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/07/06/JDBC/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="JDBC">JDBC</span>
+            <span class="post-date" title="2020-07-06 15:57:29">2020/07/06</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/06/24/docker-07-docker%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-07-docker部署SpringCloud">docker-07-docker部署SpringCloud</span>
+            <span class="post-date" title="2020-06-24 08:03:09">2020/06/24</span>
+        </a>
+        
+        <a  class="All 笔记整理 "
+           href="/2020/06/18/%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9C%80%E8%A6%81%E4%BC%9A%E4%BB%80%E4%B9%88/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="后端工程师需要会什么?">后端工程师需要会什么?</span>
+            <span class="post-date" title="2020-06-18 16:03:07">2020/06/18</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/06/18/MySql%E5%85%A5%E9%97%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySql入门">MySql入门</span>
+            <span class="post-date" title="2020-06-18 10:18:26">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/BootStrap/"
+           data-tag="BootStrap"
+           data-author="" >
+            <span class="post-title" title="BootStrap">BootStrap</span>
+            <span class="post-date" title="2020-06-18 10:01:45">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/Jquery/"
+           data-tag="css,js"
+           data-author="" >
+            <span class="post-title" title="Jquery">Jquery</span>
+            <span class="post-date" title="2020-06-18 09:45:10">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/CSS-Js%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="CSS-Js入门">CSS-Js入门</span>
+            <span class="post-date" title="2020-06-18 09:23:20">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/HTML%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="HTML入门">HTML入门</span>
+            <span class="post-date" title="2020-06-18 09:07:56">2020/06/18</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/06/17/Eclipse%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8/"
+           data-tag="其他"
+           data-author="" >
+            <span class="post-title" title="Eclipse快捷键大全">Eclipse快捷键大全</span>
+            <span class="post-date" title="2020-06-17 16:54:56">2020/06/17</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8027-%E5%8F%8D%E5%B0%84-JDK%E6%96%B0%E7%89%B9%E6%80%A7/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础27-反射-JDK新特性">Java基础27-反射-JDK新特性</span>
+            <span class="post-date" title="2020-06-16 12:24:25">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8026-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础26-网络编程">Java基础26-网络编程</span>
+            <span class="post-date" title="2020-06-16 12:23:06">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8025-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础25-多线程-下">Java基础25-多线程-下</span>
+            <span class="post-date" title="2020-06-16 12:22:52">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8024-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8A/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础24-多线程-上">Java基础24-多线程-上</span>
+            <span class="post-date" title="2020-06-16 12:22:41">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8023-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础23-递归练习">Java基础23-递归练习</span>
+            <span class="post-date" title="2020-06-16 12:21:56">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8022-IO%E5%85%B6%E4%BB%96%E6%B5%81-Properties/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础22-IO其他流-Properties">Java基础22-IO其他流-Properties</span>
+            <span class="post-date" title="2020-06-16 12:21:12">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8021-IO%E5%AD%97%E7%AC%A6%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础21-IO字符流">Java基础21-IO字符流</span>
+            <span class="post-date" title="2020-06-16 12:19:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8020-IO%E5%AD%97%E8%8A%82%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础20-IO字节流">Java基础20-IO字节流</span>
+            <span class="post-date" title="2020-06-16 12:17:38">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8019-%E5%BC%82%E5%B8%B8-IO%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础19-异常-IO流">Java基础19-异常-IO流</span>
+            <span class="post-date" title="2020-06-16 12:13:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8018-Map%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础18-Map集合">Java基础18-Map集合</span>
+            <span class="post-date" title="2020-06-16 11:59:30">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8017-Set%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础17-Set集合">Java基础17-Set集合</span>
+            <span class="post-date" title="2020-06-16 11:15:22">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8016-List%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础16-List集合">Java基础16-List集合</span>
+            <span class="post-date" title="2020-06-16 10:55:01">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8015-Colletion%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础15-Colletion集合">Java基础15-Colletion集合</span>
+            <span class="post-date" title="2020-06-16 10:14:26">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8014-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础14-正则表达式">Java基础14-正则表达式</span>
+            <span class="post-date" title="2020-06-16 10:06:18">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8013-StringBuffer/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础13-StringBuffer">Java基础13-StringBuffer</span>
+            <span class="post-date" title="2020-06-16 09:42:03">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8012-String%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础12-String类">Java基础12-String类</span>
+            <span class="post-date" title="2020-06-16 08:11:21">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8011-Eclipse-Object/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础11-Eclipse-Object">Java基础11-Eclipse-Object</span>
+            <span class="post-date" title="2020-06-16 07:47:42">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8010-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础10-面向对象-匿名内部类">Java基础10-面向对象-匿名内部类</span>
+            <span class="post-date" title="2020-06-15 23:32:04">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8009-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础09-面向对象-多态-接口">Java基础09-面向对象-多态-接口</span>
+            <span class="post-date" title="2020-06-15 12:46:01">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8008-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础08-面向对象">Java基础08-面向对象</span>
+            <span class="post-date" title="2020-06-15 12:22:32">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/07/Boot%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B%E5%9B%BE/"
+           data-tag="SSM"
+           data-author="" >
+            <span class="post-title" title="Boot客户端管理系统流程图">Boot客户端管理系统流程图</span>
+            <span class="post-date" title="2020-06-07 17:03:11">2020/06/07</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/05/27/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9AMysql%E5%90%97/"
+           data-tag="Mysql"
+           data-author="" >
+            <span class="post-title" title="你真的会Mysql吗">你真的会Mysql吗</span>
+            <span class="post-date" title="2020-05-27 23:58:15">2020/05/27</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8007-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础07-面向对象-方法">Java基础07-面向对象-方法</span>
+            <span class="post-date" title="2020-05-22 16:39:11">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8006-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础06-二维数组">Java基础06-二维数组</span>
+            <span class="post-date" title="2020-05-22 15:50:47">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8005-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础05-一维数组">Java基础05-一维数组</span>
+            <span class="post-date" title="2020-05-22 15:49:45">2020/05/22</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9502-%E6%A0%88%E5%A0%86-%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法02-栈堆-队列">数据结构与算法02-栈堆-队列</span>
+            <span class="post-date" title="2020-05-21 16:21:48">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9501-%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法01-概念">数据结构与算法01-概念</span>
+            <span class="post-date" title="2020-05-21 16:18:09">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9503-%E6%A0%91-%E4%B8%8A/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法03-树-上">数据结构与算法03-树-上</span>
+            <span class="post-date" title="2020-05-21 16:15:29">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8004-for%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础04-for循环">Java基础04-for循环</span>
+            <span class="post-date" title="2020-05-21 10:49:10">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8002-%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E5%8F%98%E9%87%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础02(进制运算&amp;数据类型&amp;变量)">Java基础02(进制运算&amp;数据类型&amp;变量)</span>
+            <span class="post-date" title="2020-05-21 09:12:51">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础01(计算机基础)">Java基础01(计算机基础)</span>
+            <span class="post-date" title="2020-05-21 08:54:02">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8003-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础03-逻辑运算符">Java基础03-逻辑运算符</span>
+            <span class="post-date" title="2020-05-21 07:47:37">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/19/%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="那些年踩过的坑">那些年踩过的坑</span>
+            <span class="post-date" title="2020-05-19 22:34:46">2020/05/19</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/16/SpringBoot-Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot-Vue前后端分离">SpringBoot-Vue前后端分离</span>
+            <span class="post-date" title="2020-05-16 21:25:17">2020/05/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/11/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门2">SpringBoot快速入门2</span>
+            <span class="post-date" title="2020-05-11 12:25:18">2020/05/11</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/04/12/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门1">SpringBoot快速入门1</span>
+            <span class="post-date" title="2020-04-12 16:14:22">2020/04/12</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-docker-05-docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">docker-05-docker 私有仓库</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            <a  data-rel="Docker">Docker</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-08-30 14:08:51'>2020-08-16 22:53</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:263</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93"><span class="toc-text">Docker 私有仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA"><span class="toc-text">一、私有仓库搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B0%86%E9%95%9C%E5%83%8F%E4%B8%8A%E4%BC%A0%E8%87%B3%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93"><span class="toc-text">二、将镜像上传至私有仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E4%BB%8E%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">三、 从私有仓库拉取镜像</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="Docker-私有仓库"><a href="#Docker-私有仓库" class="headerlink" title="Docker 私有仓库"></a>Docker 私有仓库</h2><h3 id="一、私有仓库搭建"><a href="#一、私有仓库搭建" class="headerlink" title="一、私有仓库搭建"></a>一、私有仓库搭建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1、拉取私有仓库镜像 </span></span><br><span class="line">docker pull registry</span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、启动私有仓库容器 </span></span><br><span class="line">docker run -id --name=registry -p 5000:5000 registry</span><br><span class="line"><span class="meta">#</span><span class="bash"> 3、打开浏览器 输入地址http://私有仓库服务器ip:5000/v2/_catalog，看到&#123;<span class="string">&quot;repositories&quot;</span>:[]&#125; 表示私有仓库 搭建成功</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 4、修改daemon.json   </span></span><br><span class="line">vim /etc/docker/daemon.json    </span><br><span class="line"><span class="meta">#</span><span class="bash"> 在上述文件中添加一个key，保存退出。此步用于让 docker 信任私有仓库地址；注意将私有仓库服务器ip修改为自己私有仓库服务器真实ip </span></span><br><span class="line">&#123;&quot;insecure-registries&quot;:[&quot;私有仓库服务器ip:5000&quot;]&#125; </span><br><span class="line"><span class="meta">#</span><span class="bash"> 5、重启docker 服务 </span></span><br><span class="line">systemctl restart docker</span><br><span class="line">docker start registry</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、将镜像上传至私有仓库"><a href="#二、将镜像上传至私有仓库" class="headerlink" title="二、将镜像上传至私有仓库"></a>二、将镜像上传至私有仓库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1、标记镜像为私有仓库的镜像     </span></span><br><span class="line">docker tag centos:7 私有仓库服务器IP:5000/centos:7</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 2、上传标记的镜像     </span></span><br><span class="line">docker push 私有仓库服务器IP:5000/centos:7</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、-从私有仓库拉取镜像"><a href="#三、-从私有仓库拉取镜像" class="headerlink" title="三、 从私有仓库拉取镜像"></a>三、 从私有仓库拉取镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">拉取镜像 </span></span><br><span class="line">docker pull 私有仓库服务器ip:5000/centos:7</span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1210331079@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">Title:</span>docker-05-docker 私有仓库</p>
+    <p><span class="copy-title">Count:</span><span class="post-count">263</span></p>
+    <p><span class="copy-title">Author:</span><a  title="浅  悦">浅  悦</a></p>
+    <p><span class="copy-title">Created At:</span>2020-08-16, 22:53:25</p>
+    <p><span class="copy-title">Updated At:</span>2020-08-30, 14:08:51</p>
+    <span class="copy-title">Url:</span><a class="post-url" href="/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/" title="docker-05-docker 私有仓库">https://nate-lin.gitee.io/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</a>
+    <p>
+        <span class="copy-title">Copyright:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#39;Attribution-non-commercial-shared in the same way 4.0&#39;</a> Reprint please keep the original link and author.
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 千羽
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>donation.headline</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:true,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+// 底部音乐
+<div style="position:absolute; bottom: 0; right: 0;">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29393038&auto=1&height=66"></iframe>
+</div>
+
+//右上角Github图标
+<a target="_blank" rel="noopener" href="https://github.com/nateshao" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80"
+         height="80"
+         viewBox="0 0 250 250"
+         style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+         aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                                                                                                                                                                                                                                                                                                    fill="currentColor"
+                                                                                                                                                                                                                                                                                                    class="octo-body">
+        </path>
+    </svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+
+</html>

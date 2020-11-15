@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>接口测试-02-Jmeter | 浅悦的的编程时光</title>
+  <meta name="keywords" content=" 接口测试 ">
+  <meta name="description" content="接口测试-02-Jmeter | 浅悦的的编程时光">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java后端学习路线">
+<meta property="og:url" content="https://nate-lin.gitee.io/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="浅悦的的编程时光">
+<meta property="og:description" content="Java程序员高薪技术，看看你会不会文案如下：  我们先说数据库层面以MySQL为例  数据库的增删改查语法是必须要会的 数据库的三范式、表设计、主外键等知识 还有就是关联查询，left join、right join、inner join等等 数据库的一些函数的使用，了解一下 Mysql四大特性与四种隔离级别 下面是数据库的拔高知识点 数据库的全局锁、表锁、行锁、死锁、乐观锁、悲观锁 数据库的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-01T07:43:10.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:03:09.208Z">
+<meta property="article:author" content="浅  悦">
+<meta property="article:tag" content="笔记整理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="浅悦的的编程时光" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>浅  悦</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/nateshao" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/yong-yuan-de-da-an-9" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/u/4534135" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="juejin" href="https://juejin.im/user/5eaf74985188256d3c52d287" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-juejin"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1210331079@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(90)</small></div></li>
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(36)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Docker">Docker<small>(12)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="dubbo">dubbo<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="中间件">中间件<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="微服务">微服务<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记整理">笔记整理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="软件测试">软件测试<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="面试">面试<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/">About</a><a style="width: 50%"  class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_word_count" value="200.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://nateshao.gitee.io/">千羽</a></li>
+            
+            <li><a target="_blank" href="https://wallleap.cn/">Luwang</a></li>
+            
+            <li><a target="_blank" href="http://www.natehuang.cn/index">natehuang</a></li>
+            
+            <li><a target="_blank" href="http://yuyang.run/#/">阳哥在奔跑</a></li>
+            
+            <li><a target="_blank" href="https://www.lzhpo.com/">会打篮球的程序猿</a></li>
+            
+            <li><a target="_blank" href="https://nate-lin.gitee.io/">浅悦</a></li>
+            
+            <li><a target="_blank" href="https://qghost.gitee.io/blog/">Wyatex`s blog</a></li>
+            
+            <li><a target="_blank" href="https://www.pkslow.com/">南瓜慢说</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BootStrap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>css</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JavaWeb</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>js</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springboot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>springcloud</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SSM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其他</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>性能测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>笔记整理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软件测试</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="All 面试 "
+           href="/2020/06/21/%E9%9D%A2%E8%AF%95-%E7%AE%80%E5%8E%86%E5%88%B6%E4%BD%9C%E4%B8%93%E9%A2%98/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="面试+简历制作专题">面试+简历制作专题</span>
+            <span class="post-date" title="2020-06-21 08:10:38">2020/06/21</span>
+        </a>
+        
+        <a id="top" class="All 笔记整理 "
+           href="/2020/06/25/Xmind%E6%B1%87%E6%80%BB%E6%89%80%E6%9C%89%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="Xmind汇总所有知识点">Xmind汇总所有知识点</span>
+            <span class="post-date" title="2020-06-25 15:43:24">2020/06/25</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/14/MySQL%E8%BF%9B%E9%98%B604-%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶04-索引的使用">MySQL进阶04-索引的使用</span>
+            <span class="post-date" title="2020-07-14 22:03:04">2020/07/14</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/06/MySQL%E8%BF%9B%E9%98%B603-MySQL%E4%BC%98%E5%8C%96/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶03-MySQL优化">MySQL进阶03-MySQL优化</span>
+            <span class="post-date" title="2020-07-06 15:21:16">2020/07/06</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B602-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶02(存储引擎)">MySQL进阶02(存储引擎)</span>
+            <span class="post-date" title="2020-07-04 21:52:31">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 数据库 "
+           href="/2020/07/04/MySQL%E8%BF%9B%E9%98%B601-%E7%B4%A2%E5%BC%95-%E8%A7%86%E5%9B%BE-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL进阶01(索引-视图-存储过程)">MySQL进阶01(索引-视图-存储过程)</span>
+            <span class="post-date" title="2020-07-04 21:41:15">2020/07/04</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/%E4%BD%A0%E4%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%90%97/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="你会单元测试吗">你会单元测试吗</span>
+            <span class="post-date" title="2020-06-12 22:17:41">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 后端 "
+           href="/2020/06/12/SpringBoot%E6%95%B4%E5%90%88JustAuth%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合JustAuth第三方登录">SpringBoot整合JustAuth第三方登录</span>
+            <span class="post-date" title="2020-06-12 12:52:15">2020/06/12</span>
+        </a>
+        
+        <a id="top" class="All 面试 "
+           href="/2020/11/01/Java%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"
+           data-tag="笔记整理"
+           data-author="" >
+            <span class="post-title" title="Java后端学习路线">Java后端学习路线</span>
+            <span class="post-date" title="2020-11-01 15:43:10">2020/11/01</span>
+        </a>
+        
+        <a id="top" class="All dubbo "
+           href="/2020/08/23/%E5%88%86%E5%B8%83%E5%BC%8FRPC%E6%A1%86%E6%9E%B6-Dubbo/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="分布式RPC框架-Dubbo">分布式RPC框架-Dubbo</span>
+            <span class="post-date" title="2020-08-23 13:01:18">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/10/21/%E5%8D%83%E7%BE%BD%E8%BF%99%E4%B8%A4%E5%B9%B4/"
+           data-tag="大学"
+           data-author="" >
+            <span class="post-title" title="千羽这两年..">千羽这两年..</span>
+            <span class="post-date" title="2020-10-21 20:47:42">2020/10/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/25/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="推荐算法">推荐算法</span>
+            <span class="post-date" title="2020-09-25 22:14:36">2020/09/25</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/09/07/cloud-02-feign-gateway-bus/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-02-feign-gateway-bus">cloud-02-feign-gateway-bus</span>
+            <span class="post-date" title="2020-09-07 20:20:25">2020/09/07</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/09/07/%E5%8D%83%E7%BE%BDJava%E5%BC%80%E5%8F%91%E7%9A%84%E5%AE%9E%E4%B9%A0%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"
+           data-tag="springboot"
+           data-author="" >
+            <span class="post-title" title="千羽Java开发的实习经验分享">千羽Java开发的实习经验分享</span>
+            <span class="post-date" title="2020-09-07 13:28:44">2020/09/07</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/09/03/Java%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E4%B9%8B%E7%81%AB%E7%84%B0%E5%9B%BE/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="Java性能分析之火焰图">Java性能分析之火焰图</span>
+            <span class="post-date" title="2020-09-03 23:14:47">2020/09/03</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-02-RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-02-RabbitMQ集群搭建">RabbitMQ-02-RabbitMQ集群搭建</span>
+            <span class="post-date" title="2020-08-23 14:56:07">2020/08/23</span>
+        </a>
+        
+        <a  class="All 中间件 "
+           href="/2020/08/23/RabbitMQ-01-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ-01-基础入门">RabbitMQ-01-基础入门</span>
+            <span class="post-date" title="2020-08-23 14:54:04">2020/08/23</span>
+        </a>
+        
+        <a  class="All 微服务 "
+           href="/2020/08/23/cloud-01-Eureka-Ribbon-hystrix/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="cloud-01-Eureka-Ribbon-hystrix">cloud-01-Eureka-Ribbon-hystrix</span>
+            <span class="post-date" title="2020-08-23 14:05:11">2020/08/23</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/23/%E4%BD%A0%E5%9B%9E%E5%8E%BB%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BRESTful%E9%A3%8E%E6%A0%BC/"
+           data-tag="软件测试"
+           data-author="" >
+            <span class="post-title" title="你回去了解一下RESTful风格">你回去了解一下RESTful风格</span>
+            <span class="post-date" title="2020-08-23 11:50:25">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/keymap-win%E8%BD%ACmac/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="keymap-win转mac">keymap-win转mac</span>
+            <span class="post-date" title="2020-08-23 11:41:21">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-07-typeof-null-undefined/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-07-typeof-null-undefined">js-07-typeof-null-undefined</span>
+            <span class="post-date" title="2020-08-23 10:20:40">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-04-break%E5%92%8Ccontinue/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-04-break和continue">js-04-break和continue</span>
+            <span class="post-date" title="2020-08-23 10:15:47">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-06-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-06-判断语句">js-06-判断语句</span>
+            <span class="post-date" title="2020-08-23 10:08:50">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-05-%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-05-字符串">js-05-字符串</span>
+            <span class="post-date" title="2020-08-23 10:08:42">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-03-%E5%AF%B9%E8%B1%A1/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-03-对象">js-03-对象</span>
+            <span class="post-date" title="2020-08-23 10:08:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-02-基本语法">js-02-基本语法</span>
+            <span class="post-date" title="2020-08-23 10:07:58">2020/08/23</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/08/23/js-01-%E5%85%A5%E9%97%A8/"
+           data-tag="js"
+           data-author="" >
+            <span class="post-title" title="js-01-入门">js-01-入门</span>
+            <span class="post-date" title="2020-08-23 10:07:34">2020/08/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/23/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-23 00:33:13">2020/08/23</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/22/docker-12-k8s%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-12-k8s部署SpringCloud">docker-12-k8s部署SpringCloud</span>
+            <span class="post-date" title="2020-08-22 23:55:18">2020/08/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/08/22/SpringBoot%E6%95%B4%E5%90%88Shiro/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringBoot整合Shiro">SpringBoot整合Shiro</span>
+            <span class="post-date" title="2020-08-22 22:21:03">2020/08/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/08/19/Java%E5%9F%BA%E7%A1%8028-%E5%B7%A9%E5%9B%BA/"
+           data-tag="Java基础,JavaWeb"
+           data-author="" >
+            <span class="post-title" title="Java基础28-巩固">Java基础28-巩固</span>
+            <span class="post-date" title="2020-08-19 09:12:51">2020/08/19</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/18/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"
+           data-tag="性能测试"
+           data-author="" >
+            <span class="post-title" title="性能测试">性能测试</span>
+            <span class="post-date" title="2020-08-18 01:02:12">2020/08/18</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-09-%E5%86%99Dockerfile%E5%B9%B6%E4%B8%8A%E4%BC%A0DockerHub/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-09-写Dockerfile并上传DockerHub">docker-09-写Dockerfile并上传DockerHub</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-10-%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9A%E9%95%9C%E5%83%8F%E7%A7%81%E6%9C%8D/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-10-搭建企业镜像私服">docker-10-搭建企业镜像私服</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/17/docker-11-Rancher%E6%9D%A5%E4%BA%86/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-11-Rancker来了">docker-11-Rancker来了</span>
+            <span class="post-date" title="2020-08-17 23:34:15">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-01-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-01-基础知识">接口测试-01-基础知识</span>
+            <span class="post-date" title="2020-08-17 01:02:18">2020/08/17</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/"
+           data-tag="接口测试"
+           data-author="" >
+            <span class="post-title" title="接口测试-02-Jmeter">接口测试-02-Jmeter</span>
+            <span class="post-date" title="2020-08-17 01:02:12">2020/08/17</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-01-%E5%AE%89%E8%A3%85docker/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-01-安装docker">docker-01-安装docker</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-04-docker-compose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-04-docker-compose">docker-04-docker-compose</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-02-docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-02-docker应用部署">docker-02-docker应用部署</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-05-docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-05-docker 私有仓库">docker-05-docker 私有仓库</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-03-dockerfile/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-03-dockerfile">docker-03-dockerfile</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/16/docker-06-docker%E9%83%A8%E7%BD%B2Springboot/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-06-docker部署Springboot">docker-06-docker部署Springboot</span>
+            <span class="post-date" title="2020-08-16 22:53:25">2020/08/16</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/08/11/docker-08-%E7%BC%96%E5%86%99dockerCompose/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-08-编写dockerCompose">docker-08-编写dockerCompose</span>
+            <span class="post-date" title="2020-08-11 08:03:09">2020/08/11</span>
+        </a>
+        
+        <a  class="All 软件测试 "
+           href="/2020/07/12/powermock%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="初始Mockito">初始Mockito</span>
+            <span class="post-date" title="2020-07-12 11:32:28">2020/07/12</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/07/06/JDBC/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="JDBC">JDBC</span>
+            <span class="post-date" title="2020-07-06 15:57:29">2020/07/06</span>
+        </a>
+        
+        <a  class="All Docker "
+           href="/2020/06/24/docker-07-docker%E9%83%A8%E7%BD%B2SpringCloud/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="docker-07-docker部署SpringCloud">docker-07-docker部署SpringCloud</span>
+            <span class="post-date" title="2020-06-24 08:03:09">2020/06/24</span>
+        </a>
+        
+        <a  class="All 笔记整理 "
+           href="/2020/06/18/%E5%90%8E%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9C%80%E8%A6%81%E4%BC%9A%E4%BB%80%E4%B9%88/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="后端工程师需要会什么?">后端工程师需要会什么?</span>
+            <span class="post-date" title="2020-06-18 16:03:07">2020/06/18</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/06/18/MySql%E5%85%A5%E9%97%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySql入门">MySql入门</span>
+            <span class="post-date" title="2020-06-18 10:18:26">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/BootStrap/"
+           data-tag="BootStrap"
+           data-author="" >
+            <span class="post-title" title="BootStrap">BootStrap</span>
+            <span class="post-date" title="2020-06-18 10:01:45">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/Jquery/"
+           data-tag="css,js"
+           data-author="" >
+            <span class="post-title" title="Jquery">Jquery</span>
+            <span class="post-date" title="2020-06-18 09:45:10">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/CSS-Js%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="CSS-Js入门">CSS-Js入门</span>
+            <span class="post-date" title="2020-06-18 09:23:20">2020/06/18</span>
+        </a>
+        
+        <a  class="All 前端 "
+           href="/2020/06/18/HTML%E5%85%A5%E9%97%A8/"
+           data-tag="HTML"
+           data-author="" >
+            <span class="post-title" title="HTML入门">HTML入门</span>
+            <span class="post-date" title="2020-06-18 09:07:56">2020/06/18</span>
+        </a>
+        
+        <a  class="All "
+           href="/2020/06/17/Eclipse%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%A7%E5%85%A8/"
+           data-tag="其他"
+           data-author="" >
+            <span class="post-title" title="Eclipse快捷键大全">Eclipse快捷键大全</span>
+            <span class="post-date" title="2020-06-17 16:54:56">2020/06/17</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8027-%E5%8F%8D%E5%B0%84-JDK%E6%96%B0%E7%89%B9%E6%80%A7/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础27-反射-JDK新特性">Java基础27-反射-JDK新特性</span>
+            <span class="post-date" title="2020-06-16 12:24:25">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8026-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础26-网络编程">Java基础26-网络编程</span>
+            <span class="post-date" title="2020-06-16 12:23:06">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8025-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8B/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础25-多线程-下">Java基础25-多线程-下</span>
+            <span class="post-date" title="2020-06-16 12:22:52">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8024-%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%8A/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础24-多线程-上">Java基础24-多线程-上</span>
+            <span class="post-date" title="2020-06-16 12:22:41">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8023-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础23-递归练习">Java基础23-递归练习</span>
+            <span class="post-date" title="2020-06-16 12:21:56">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8022-IO%E5%85%B6%E4%BB%96%E6%B5%81-Properties/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础22-IO其他流-Properties">Java基础22-IO其他流-Properties</span>
+            <span class="post-date" title="2020-06-16 12:21:12">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8021-IO%E5%AD%97%E7%AC%A6%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础21-IO字符流">Java基础21-IO字符流</span>
+            <span class="post-date" title="2020-06-16 12:19:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8020-IO%E5%AD%97%E8%8A%82%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础20-IO字节流">Java基础20-IO字节流</span>
+            <span class="post-date" title="2020-06-16 12:17:38">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8019-%E5%BC%82%E5%B8%B8-IO%E6%B5%81/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础19-异常-IO流">Java基础19-异常-IO流</span>
+            <span class="post-date" title="2020-06-16 12:13:58">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8018-Map%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础18-Map集合">Java基础18-Map集合</span>
+            <span class="post-date" title="2020-06-16 11:59:30">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8017-Set%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础17-Set集合">Java基础17-Set集合</span>
+            <span class="post-date" title="2020-06-16 11:15:22">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8016-List%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础16-List集合">Java基础16-List集合</span>
+            <span class="post-date" title="2020-06-16 10:55:01">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8015-Colletion%E9%9B%86%E5%90%88/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础15-Colletion集合">Java基础15-Colletion集合</span>
+            <span class="post-date" title="2020-06-16 10:14:26">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8014-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础14-正则表达式">Java基础14-正则表达式</span>
+            <span class="post-date" title="2020-06-16 10:06:18">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8013-StringBuffer/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础13-StringBuffer">Java基础13-StringBuffer</span>
+            <span class="post-date" title="2020-06-16 09:42:03">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8012-String%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础12-String类">Java基础12-String类</span>
+            <span class="post-date" title="2020-06-16 08:11:21">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/16/Java%E5%9F%BA%E7%A1%8011-Eclipse-Object/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础11-Eclipse-Object">Java基础11-Eclipse-Object</span>
+            <span class="post-date" title="2020-06-16 07:47:42">2020/06/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8010-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础10-面向对象-匿名内部类">Java基础10-面向对象-匿名内部类</span>
+            <span class="post-date" title="2020-06-15 23:32:04">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8009-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础09-面向对象-多态-接口">Java基础09-面向对象-多态-接口</span>
+            <span class="post-date" title="2020-06-15 12:46:01">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/15/Java%E5%9F%BA%E7%A1%8008-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础08-面向对象">Java基础08-面向对象</span>
+            <span class="post-date" title="2020-06-15 12:22:32">2020/06/15</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/06/07/Boot%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B%E5%9B%BE/"
+           data-tag="SSM"
+           data-author="" >
+            <span class="post-title" title="Boot客户端管理系统流程图">Boot客户端管理系统流程图</span>
+            <span class="post-date" title="2020-06-07 17:03:11">2020/06/07</span>
+        </a>
+        
+        <a  class="All 数据库 "
+           href="/2020/05/27/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9AMysql%E5%90%97/"
+           data-tag="Mysql"
+           data-author="" >
+            <span class="post-title" title="你真的会Mysql吗">你真的会Mysql吗</span>
+            <span class="post-date" title="2020-05-27 23:58:15">2020/05/27</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8007-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础07-面向对象-方法">Java基础07-面向对象-方法</span>
+            <span class="post-date" title="2020-05-22 16:39:11">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8006-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础06-二维数组">Java基础06-二维数组</span>
+            <span class="post-date" title="2020-05-22 15:50:47">2020/05/22</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/22/Java%E5%9F%BA%E7%A1%8005-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础05-一维数组">Java基础05-一维数组</span>
+            <span class="post-date" title="2020-05-22 15:49:45">2020/05/22</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9502-%E6%A0%88%E5%A0%86-%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法02-栈堆-队列">数据结构与算法02-栈堆-队列</span>
+            <span class="post-date" title="2020-05-21 16:21:48">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9501-%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法01-概念">数据结构与算法01-概念</span>
+            <span class="post-date" title="2020-05-21 16:18:09">2020/05/21</span>
+        </a>
+        
+        <a  class="All 数据结构 "
+           href="/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%9503-%E6%A0%91-%E4%B8%8A/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构与算法03-树-上">数据结构与算法03-树-上</span>
+            <span class="post-date" title="2020-05-21 16:15:29">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8004-for%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础04-for循环">Java基础04-for循环</span>
+            <span class="post-date" title="2020-05-21 10:49:10">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8002-%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E5%8F%98%E9%87%8F/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础02(进制运算&amp;数据类型&amp;变量)">Java基础02(进制运算&amp;数据类型&amp;变量)</span>
+            <span class="post-date" title="2020-05-21 09:12:51">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8001-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础01(计算机基础)">Java基础01(计算机基础)</span>
+            <span class="post-date" title="2020-05-21 08:54:02">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/21/Java%E5%9F%BA%E7%A1%8003-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="Java基础03-逻辑运算符">Java基础03-逻辑运算符</span>
+            <span class="post-date" title="2020-05-21 07:47:37">2020/05/21</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/19/%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"
+           data-tag="Java基础"
+           data-author="" >
+            <span class="post-title" title="那些年踩过的坑">那些年踩过的坑</span>
+            <span class="post-date" title="2020-05-19 22:34:46">2020/05/19</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/16/SpringBoot-Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot-Vue前后端分离">SpringBoot-Vue前后端分离</span>
+            <span class="post-date" title="2020-05-16 21:25:17">2020/05/16</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/05/11/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门2">SpringBoot快速入门2</span>
+            <span class="post-date" title="2020-05-11 12:25:18">2020/05/11</span>
+        </a>
+        
+        <a  class="All 后端 "
+           href="/2020/04/12/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot快速入门1">SpringBoot快速入门1</span>
+            <span class="post-date" title="2020-04-12 16:14:22">2020/04/12</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-接口测试-02-Jmeter" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">接口测试-02-Jmeter</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            <a  data-rel="软件测试">软件测试</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">接口测试</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-08-18 22:39:47'>2020-08-17 01:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:3.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E4%BB%8B%E7%BB%8D"><span class="toc-text">Jmeter 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Jmeter-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1. Jmeter 是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%A6%82%E5%BF%B5"><span class="toc-text">1.1 概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-text">作用：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-text">优点：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E7%BC%BA%E7%82%B9"><span class="toc-text">1.5 缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E6%80%BB%E7%BB%93"><span class="toc-text">1.6 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%86%E8%A7%A3%EF%BC%9A%E9%85%8D%E7%BD%AE-JMeter-%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%88-JDK-%E3%80%81-JRE-%E3%80%81-JVM-%EF%BC%89"><span class="toc-text">2. 了解：配置 JMeter 运行环境（ JDK 、 JRE 、 JVM ）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-JDK"><span class="toc-text">2.1 JDK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-JRE"><span class="toc-text">2.2 JRE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-JVM"><span class="toc-text">2.3 JVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-JAVA-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%8E%9F%E7%90%86%E3%80%90%E6%89%A9%E5%B1%95%E3%80%91"><span class="toc-text">2.4 JAVA 跨平台原理【扩展】</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-text">Jmeter 工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Jmeter-%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">2. Jmeter 下载与安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-text">2.1 官网下载地址 :</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#http-jmeter-apache-org-download-jmeter-cgi"><span class="toc-text">http:&#x2F;&#x2F;jmeter.apache.org&#x2F;download_jmeter.cgi</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%A4%BA%E6%84%8F%E5%9B%BE%EF%BC%9A"><span class="toc-text">下载示意图：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%90%AF%E5%8A%A8-JMeter-%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">2.2 启动 JMeter 的两种方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5bin%E7%9B%AE%E5%BD%95"><span class="toc-text">进入bin目录</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Jmeter-%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-text">3 Jmeter 常用目录文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Bin-%E7%9B%AE%E5%BD%95"><span class="toc-text">3.1 Bin 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-docs-%E7%9B%AE%E5%BD%95-%E4%BA%86%E8%A7%A3%E5%BC%80%E6%BA%90"><span class="toc-text">3.2 docs 目录 ( 了解开源 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-printable-docs-%E7%9B%AE%E5%BD%95"><span class="toc-text">3.3 printable_docs 目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E5%B7%A5%E5%85%B7%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="toc-text">Jmeter 工具功能界面布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%86%9F%E6%82%89%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E9%9D%A2%E6%9D%BF"><span class="toc-text">熟悉测试计划面板</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="toc-text">1. 主界面布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#JMeter%E7%9A%84%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%B8%83%E5%B1%80%E5%88%86%E4%B8%BA%E6%A0%87%E9%A2%98%E6%A0%8F%E3%80%81%E8%8F%9C%E5%8D%95%E6%A0%8F%E3%80%81%E5%B7%A5%E5%85%B7%E6%A0%8F%E3%80%81%E6%A0%91%E5%BD%A2%E6%A0%87%E7%AD%BE%E6%A0%8F%E5%92%8C%E5%86%85%E5%AE%B9%E6%A0%8F"><span class="toc-text">JMeter的主界面布局分为标题栏、菜单栏、工具栏、树形标签栏和内容栏</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8-JMeter-%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="toc-text">2. 使用 JMeter 进行接口测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E7%95%99%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-text">遗留的问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-JMeter-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">使用 JMeter 的解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Test-Plan-%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92"><span class="toc-text">3. Test Plan( 测试计划 )</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%EF%BC%9A-1"><span class="toc-text">作用：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Threads-User-%E7%BA%BF%E7%A8%8B%E7%BB%84-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91"><span class="toc-text">4. Threads(User) 线程组 【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-thread-group-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="toc-text">4.1 thread group( 线程组 )</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">线程属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">调度器配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%A1%88%E4%BE%8B"><span class="toc-text">4.2 案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE%EF%BC%9A"><span class="toc-text">效果图：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AE%BE%E7%BD%AE%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-text">组件设置细节：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text">4.3 组件详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-text">4.3 - HTTP 请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-text">作用 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3%EF%BC%9A"><span class="toc-text">参数详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Body-Data-%E9%80%89%E9%A1%B9%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-text">Body Data 选项作用：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-%E8%AF%B7%E6%B1%82%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">HTTP 请求总结：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AF%9F%E7%9C%8B%E7%BB%93%E6%9E%9C%E6%A0%91"><span class="toc-text">4.3  察看结果树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%EF%BC%9A-2"><span class="toc-text">作用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%9F%E7%9C%8B%E7%BB%93%E6%9E%9C%E6%A0%91%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">察看结果树总结：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E7%BA%BF%E7%A8%8B%E7%BB%84%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">4.4 线程组总结：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E4%BB%B6"><span class="toc-text">元件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="toc-text">元件结论：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E5%90%84%E5%85%83%E4%BB%B6%E4%B8%AD%E9%9C%80%E8%A6%81%E6%8E%8C%E6%8F%A1%E5%85%83%E4%BB%B6"><span class="toc-text">Jmeter 各元件中需要掌握元件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E7%90%86%E5%87%BA%E5%90%84%E5%A4%A7%E5%85%83%E4%BB%B6%E5%B8%B8%E7%94%A8%E7%9A%84%E9%87%8D%E7%82%B9%E7%BB%84%E4%BB%B6"><span class="toc-text">整理出各大元件常用的重点组件</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E5%85%83%E4%BB%B6%EF%BC%88-config-Element-%EF%BC%89"><span class="toc-text">1. 配置元件（ config Element ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%89%8D%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88-Per-Processors-%EF%BC%89"><span class="toc-text">2. 前置处理器（ Per Processors ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%88-Timer-%EF%BC%89"><span class="toc-text">3. 定时器（ Timer ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%96%E6%A0%B7%E5%99%A8%EF%BC%88-sample-%EF%BC%89"><span class="toc-text">4. 取样器（ sample ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88-Post-Processors-%EF%BC%89"><span class="toc-text">5. 后置处理器（ Post Processors ）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%99%A8"><span class="toc-text">1) 正则表达式提取器</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%96%AD%E8%A8%80%EF%BC%88-Assertions-%EF%BC%89"><span class="toc-text">6. 断言（ Assertions ）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%93%8D%E5%BA%94%E6%96%AD%E8%A8%80"><span class="toc-text">1) 响应断言</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%9B%91%E5%90%AC%E5%99%A8%EF%BC%88-Listener-%EF%BC%89"><span class="toc-text">6. 监听器（ Listener ）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%AF%9F%E7%9C%8B%E7%BB%93%E6%9E%9C%E6%A0%91"><span class="toc-text">1) 察看结果树</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E8%81%9A%E5%90%88%E6%8A%A5%E5%91%8A"><span class="toc-text">2) 聚合报告</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E6%96%AD%E8%A8%80%E7%BB%93%E6%9E%9C"><span class="toc-text">3) 断言结果</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-text">8. 逻辑控制器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E5%B7%A5%E5%85%B7%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">Jmeter 工具核心知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jmeter-%E5%8F%82%E6%95%B0%E5%8C%96"><span class="toc-text">Jmeter 参数化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%8E%8C%E6%8F%A1Jmeter%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="toc-text">学习掌握Jmeter中常用参数化方式</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8F%82%E6%95%B0%E5%8C%96%EF%BC%9F"><span class="toc-text">1. 为什么要参数化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%9C%80%E6%B1%82%E6%96%B0%E5%A2%9E-10-%E6%9D%A1%E6%95%B0%E6%8D%AE"><span class="toc-text">1.1 需求新增 10 条数据</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AD%A6%E9%99%A2-%E6%96%B0%E5%A2%9E"><span class="toc-text">学院-新增</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%EF%BC%9APOST"><span class="toc-text">1) 请求方法：POST</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题 :</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%82%E6%95%B0%E5%8C%96%EF%BC%9F"><span class="toc-text">2. 什么是参数化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-Jmeter-%E4%B8%AD%E5%8F%82%E6%95%B0%E5%8C%96%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">在 Jmeter 中参数化常用方式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-CSV-Data-Set-Config-%EF%BC%88%E6%95%B0%E6%8D%AE%E9%9B%86%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">1. CSV Data Set Config （数据集配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%AE%9E%E6%96%BD%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90"><span class="toc-text">1.1 实施方案分析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8E%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92-gt-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="toc-text">1. 基于测试计划-&gt;线程组</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%BB%84%E4%BB%B6%E8%A6%81%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-text">1.2 组件要点分析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E7%BA%BF%E7%A8%8B%E7%BB%84-%E5%BE%AA%E7%8E%AF%E6%AC%A1%E6%95%B0-10"><span class="toc-text">1. 线程组:循环次数 10</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-CSV-Data-Set-Config-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%9B%BE"><span class="toc-text">1.3 CSV Data Set Config 参数配置图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-HTTP-%E4%BF%A1%E6%81%AF%E5%A4%B4%E7%AE%A1%E7%90%86%E5%99%A8-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%9B%BE"><span class="toc-text">1.4 HTTP 信息头管理器 参数配置图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-CSV-Data-Set-Config-%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">1.5 CSV Data Set Config- 总结：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%8F%82%E6%95%B0%E5%8C%96%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 参数化概念</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Jmeter-介绍"><a href="#Jmeter-介绍" class="headerlink" title="Jmeter 介绍"></a>Jmeter 介绍</h1><h1 id="1-Jmeter-是什么？"><a href="#1-Jmeter-是什么？" class="headerlink" title="1. Jmeter 是什么？"></a>1. Jmeter 是什么？</h1><h2 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h2><blockquote>
+<p>Jmeter：是Apche公司使用Java平台开发的一款测试工具。</p>
+</blockquote>
+<h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">接口测试</span><br><span class="line">性能测试：内在 ---&gt; 程序的算法 (程序运行的时间效率)</span><br><span class="line">压力测试：外在 ---&gt; 外在负载  (用户量)</span><br><span class="line">Web自动化测试</span><br><span class="line">数据库测试</span><br><span class="line">JAVA程序测试</span><br></pre></td></tr></table></figure>
+
+<h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">开源、免费</span><br><span class="line">支持多协议：http https ftp ftps</span><br><span class="line">小巧</span><br><span class="line">功能强大</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/1.jpg"></p>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/2.jpg"></p>
+<h2 id="1-5-缺点"><a href="#1-5-缺点" class="headerlink" title="1.5 缺点"></a>1.5 缺点</h2><blockquote>
+<ol>
+<li><p>不支持IP欺骗</p>
+</li>
+<li><p>不支持前端测试。使用JMeter无法验证JS程序，也无法验证页面UI，所以要须要和Selenium配合来完成</p>
+</li>
+</ol>
+<p>Web2.0应用的测试</p>
+</blockquote>
+<h2 id="1-6-总结"><a href="#1-6-总结" class="headerlink" title="1.6 总结"></a>1.6 总结</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JMeter概念</span><br><span class="line">JMeter作用</span><br><span class="line">JMeter优点</span><br><span class="line">JMeter缺点</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-了解：配置-JMeter-运行环境（-JDK-、-JRE-、-JVM-）"><a href="#2-了解：配置-JMeter-运行环境（-JDK-、-JRE-、-JVM-）" class="headerlink" title="2. 了解：配置 JMeter 运行环境（ JDK 、 JRE 、 JVM ）"></a>2. 了解：配置 JMeter 运行环境（ JDK 、 JRE 、 JVM ）</h2><h4 id="2-1-JDK"><a href="#2-1-JDK" class="headerlink" title="2.1 JDK"></a>2.1 JDK</h4><blockquote>
+<p>JDK概念：java开发工具包，程序员使用。包含JRE和JVM。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下载方式：</span><br><span class="line">	1. 官网下载地址：http:&#x2F;&#x2F;www.oracle.com&#x2F;</span><br><span class="line">	2. 百度搜索“JDK”关键字</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-JRE"><a href="#2-2-JRE" class="headerlink" title="2.2 JRE"></a>2.2 JRE</h4><blockquote>
+<p> JRE概念：JAVA程序运行环境，包含JVM和JVM运行时所需要的资源。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下载方式：</span><br><span class="line">	<span class="number">1.</span> 官网下载地址：http:<span class="comment">//www.oracle.com/</span></span><br><span class="line">	<span class="number">2.</span> 百度搜索“JRE”关键字</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-JVM"><a href="#2-3-JVM" class="headerlink" title="2.3 JVM"></a>2.3 JVM</h4><blockquote>
+<p>JVM概念：Java虚拟机</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无需下载，JDK或者JRE包含。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/3.jpg"></p>
+<h4 id="2-4-JAVA-跨平台原理【扩展】"><a href="#2-4-JAVA-跨平台原理【扩展】" class="headerlink" title="2.4 JAVA 跨平台原理【扩展】"></a>2.4 JAVA 跨平台原理【扩展】</h4><blockquote>
+<p>总结： 对于测试人员，我们要记住，如果使用JMeter，必须要安装JDK或者JRE。</p>
+</blockquote>
+<h1 id="Jmeter-工具安装"><a href="#Jmeter-工具安装" class="headerlink" title="Jmeter 工具安装"></a>Jmeter 工具安装</h1><h2 id="2-Jmeter-下载与安装"><a href="#2-Jmeter-下载与安装" class="headerlink" title="2. Jmeter 下载与安装"></a>2. Jmeter 下载与安装</h2><h2 id="2-1-官网下载地址"><a href="#2-1-官网下载地址" class="headerlink" title="2.1 官网下载地址 :"></a>2.1 官网下载地址 :</h2><h5 id="http-jmeter-apache-org-download-jmeter-cgi"><a href="#http-jmeter-apache-org-download-jmeter-cgi" class="headerlink" title="http://jmeter.apache.org/download_jmeter.cgi"></a><a target="_blank" rel="noopener" href="http://jmeter.apache.org/download_jmeter.cgi">http://jmeter.apache.org/download_jmeter.cgi</a></h5><h5 id="下载示意图："><a href="#下载示意图：" class="headerlink" title="下载示意图："></a>下载示意图：<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/4.jpg"></h5><blockquote>
+<p>注意：下载后，解压文件到任意目录，避免在一个有空格的路径安装Jmeter，这将导致远程测试出现问题</p>
+</blockquote>
+<h2 id="2-2-启动-JMeter-的两种方式："><a href="#2-2-启动-JMeter-的两种方式：" class="headerlink" title="2.2 启动 JMeter 的两种方式："></a>2.2 启动 JMeter 的两种方式：</h2><h5 id="进入bin目录"><a href="#进入bin目录" class="headerlink" title="进入bin目录"></a>进入bin目录</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 双击 ApacheJMeter.jar文件;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 双击 Jmeter.bat文件;</span><br><span class="line"></span><br><span class="line">	i. 出现Jmeter不是内部或外部命令在环境变量PATH中添加Jmeter路径bin目录，</span><br><span class="line">	   比如（E:\测试\Tools\apache-jmeter-<span class="number">3.1</span>\bin）</span><br><span class="line">	ii. 出现<span class="string">&#x27;findstr&#x27;</span> 不是内部或外部命令，在PATH中添(%SystemRoot%/system32;%SystemRoot%;)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 两种打开方式的区别</span><br><span class="line"><span class="number">4.</span> 发送桌面快捷方式</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Jmeter-常用目录文件介绍"><a href="#3-Jmeter-常用目录文件介绍" class="headerlink" title="3 Jmeter 常用目录文件介绍"></a>3 Jmeter 常用目录文件介绍</h2><h3 id="3-1-Bin-目录"><a href="#3-1-Bin-目录" class="headerlink" title="3.1 Bin 目录"></a>3.1 Bin 目录</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Jmeter.bat：windows系统中JMeter的启动文件</span><br><span class="line">ApacheJMeter.jar Java环境下的JMeter启动文件</span><br><span class="line">Jmeter.log：日志文件</span><br><span class="line">Jmeter.sh：linux系统中JMeter的启动文件</span><br><span class="line">Jmeter.properties：系统配置文件</span><br><span class="line">Jmeter-server.bat：windows分布式测试要用到的服务器配置</span><br><span class="line">Jmeter-serve：linux分布式测试要用到的服务器配置</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-docs-目录-了解开源"><a href="#3-2-docs-目录-了解开源" class="headerlink" title="3.2 docs 目录 ( 了解开源 )"></a>3.2 docs 目录 ( 了解开源 )</h3><blockquote>
+<p>docs：是JMeter的java Doc，可打开api\index.html页面来查看;</p>
+</blockquote>
+<h3 id="3-3-printable-docs-目录"><a href="#3-3-printable-docs-目录" class="headerlink" title="3.3 printable_docs 目录"></a>3.3 printable_docs 目录</h3><blockquote>
+<p> printable_docs的usermanual子目录下的内容是JMeter的用户手册文档，其中usermanual 下 component_reference.html 是最常用到的核心元件帮助文档。</p>
+</blockquote>
+<blockquote>
+<p>注意： lib 文件夹也是一个常用文件夹，使用时再讲。</p>
+</blockquote>
+<h1 id="Jmeter-工具功能界面布局"><a href="#Jmeter-工具功能界面布局" class="headerlink" title="Jmeter 工具功能界面布局"></a>Jmeter 工具功能界面布局</h1><h5 id="熟悉测试计划面板"><a href="#熟悉测试计划面板" class="headerlink" title="熟悉测试计划面板"></a>熟悉测试计划面板</h5><h2 id="1-主界面布局"><a href="#1-主界面布局" class="headerlink" title="1. 主界面布局"></a>1. 主界面布局</h2><h5 id="JMeter的主界面布局分为标题栏、菜单栏、工具栏、树形标签栏和内容栏"><a href="#JMeter的主界面布局分为标题栏、菜单栏、工具栏、树形标签栏和内容栏" class="headerlink" title="JMeter的主界面布局分为标题栏、菜单栏、工具栏、树形标签栏和内容栏"></a>JMeter的主界面布局分为标题栏、菜单栏、工具栏、树形标签栏和内容栏</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">标题栏：主要显示计划信息及JMeter版本。</span><br><span class="line">菜单栏：全部的功能的都包含在菜单栏中。</span><br><span class="line">工具栏：工具栏中的按钮在菜单栏都可以找到，工具栏就相当于菜单栏常用功能的快捷按钮</span><br><span class="line">树形标签栏：树形标签栏通常用来显示测试用例（计划）相关的标签。</span><br><span class="line">内容栏：配合树形标签栏显示，树形标签中点击哪个标签，内容栏中就显示相应的内容和操作。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/11.jpg" alt="11"></p>
+<h2 id="2-使用-JMeter-进行接口测试"><a href="#2-使用-JMeter-进行接口测试" class="headerlink" title="2. 使用 JMeter 进行接口测试"></a>2. 使用 JMeter 进行接口测试</h2><h2 id="遗留的问题："><a href="#遗留的问题：" class="headerlink" title="遗留的问题："></a>遗留的问题：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 需求对我们学院查询执行 <span class="number">100</span> 次，如何去做？</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> <span class="number">50</span>个请求同时请求如何操作？</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用-JMeter-的解决方案"><a href="#使用-JMeter-的解决方案" class="headerlink" title="使用 JMeter 的解决方案"></a>使用 JMeter 的解决方案</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 添加【测试计划】</span><br><span class="line"><span class="number">2.</span> 基于添加的测试计划添加【线程组】，循环次数设置为 <span class="number">100</span> 次</span><br><span class="line"><span class="number">3.</span> 在【取样器】中基于线程组添加HTTP请求</span><br><span class="line"><span class="number">4.</span> 在【监听器】基于线程组添加【察看结果树】</span><br><span class="line"><span class="number">5.</span> 在监听器基于线程组添加【聚合报告】</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-Test-Plan-测试计划"><a href="#3-Test-Plan-测试计划" class="headerlink" title="3. Test Plan( 测试计划 )"></a>3. Test Plan( 测试计划 )</h3><p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/12.jpg" alt="12"></p>
+<h4 id="作用：-1"><a href="#作用：-1" class="headerlink" title="作用："></a>作用：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 本次测试所需要的【组件】都是基于测试计划添加；</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 本次测试所有组件的设置与执行都基于测试计划；</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>组件：完成指定功能代码段的封装；</p>
+</li>
+<li><p>选项：独立运行每个线程组</p>
+</li>
+<li><p>进程：是每个正在运行的应用程序。</p>
+</li>
+<li><p>线程：按照进程的指令去执行指定的代码。</p>
+</li>
+<li><p>线程组（多线程）：多个线程的组合。</p>
+</li>
+<li><p>线程组（多线程）的执行顺序是并行的。</p>
+</li>
+<li><p>勾选：让本次测试计划中所有线程组保持从上到下顺序执行</p>
+</li>
+<li><p>并发执行：多个线程同时进行 特点：执行结束的顺序和启动顺序不一定一致</p>
+</li>
+<li><p>顺序执行：按照线程的启动顺序挨个执行</p>
+</li>
+<li><p>默认情况下，线程组中的线程是并发执行的，每一个线程都要执行组内的http请求</p>
+</li>
+</ul>
+<blockquote>
+<p>Add directory or jar to classpath ：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加载第三方jar包；比如：测试数据库时使用，加载数据库驱动jar包。</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Threads-User-线程组-【重点】"><a href="#4-Threads-User-线程组-【重点】" class="headerlink" title="4. Threads(User) 线程组 【重点】"></a>4. Threads(User) 线程组 【重点】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) thread group(线程组)</span><br><span class="line">2) setup thread group【特殊线程组】</span><br><span class="line">3) teardown thread group【特殊线程组】</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-1-thread-group-线程组"><a href="#4-1-thread-group-线程组" class="headerlink" title="4.1 thread group( 线程组 )"></a>4.1 thread group( 线程组 )<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/13.jpg" alt="13"></h4><blockquote>
+<p>作用 :  添加测试中使用的大多数组件</p>
+</blockquote>
+<h5 id="线程属性"><a href="#线程属性" class="headerlink" title="线程属性"></a>线程属性</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">线程数：虚拟用户数</span><br><span class="line">Ramp-<span class="function">Up <span class="title">Period</span><span class="params">(in serconds)</span>：启动虚拟全部用户数所需要的时间</span></span><br><span class="line"><span class="function">循环次数 ：指定次数或勾线永远</span></span><br><span class="line"><span class="function">调度器：勾选后，调度器配置才能使用；</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="调度器配置"><a href="#调度器配置" class="headerlink" title="调度器配置"></a>调度器配置</h5><ul>
+<li><p>持续时间（秒）：设置脚本压测持续时间</p>
+</li>
+<li><p>启动延迟（秒）：启动延迟时间</p>
+</li>
+</ul>
+<blockquote>
+<p>提示：为了理解setup thread、teardown thread两个线程组我们结合案例理解下</p>
+</blockquote>
+<h4 id="4-2-案例"><a href="#4-2-案例" class="headerlink" title="4.2 案例"></a>4.2 案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过thread group、setup thread group、teardown thread group 三个线程组去访问</span><br><span class="line">去访问查询所有学院接口.</span><br></pre></td></tr></table></figure>
+
+<h5 id="效果图："><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/11111111111111.jpg"></h5><ul>
+<li>需求组件：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">基于测试计划添加【线程组】</span><br><span class="line">基于线程组添加【HTTP请求】</span><br><span class="line">基于测试计划添加【setup thread group】线程组</span><br><span class="line">基于setup thread group添加HTTP请求</span><br><span class="line">基于测试计划添加【teardown thread group】线程组</span><br><span class="line">基于teardown thread group添加HTTP请求</span><br><span class="line">基于测试计划添加【察看结果树】</span><br></pre></td></tr></table></figure>
+
+<h5 id="组件设置细节："><a href="#组件设置细节：" class="headerlink" title="组件设置细节："></a>组件设置细节：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">测试计划勾选独立运行线程组</span><br><span class="line">HTTP请求：服务器地址 http:<span class="comment">//127.0.0.1:8000/api/departments/</span></span><br><span class="line">HTTP请求: 修改HTTP请求名称，以做区分</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-组件详解"><a href="#4-3-组件详解" class="headerlink" title="4.3 组件详解"></a>4.3 组件详解</h3><ol>
+<li><p>HTTP请求</p>
+</li>
+<li><p>察看结果树</p>
+</li>
+</ol>
+<h3 id="4-3-HTTP-请求"><a href="#4-3-HTTP-请求" class="headerlink" title="4.3 - HTTP 请求"></a>4.3 - HTTP 请求<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/18.jpg" alt="18"></h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用 :"></a>作用 :</h4><blockquote>
+<ol>
+<li><p>模拟前端或第三方软件向服务器发送请求;</p>
+</li>
+<li><p>设置请求时的方法和参数数据;</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="参数详解："><a href="#参数详解：" class="headerlink" title="参数详解："></a>参数详解：</h4><ol>
+<li><p>名称：本属性用于标识一个取样器，建议使用一个有意义的名称。</p>
+</li>
+<li><p>服务器名称或IP ：HTTP请求发送的目标服务器名称或IP地址。</p>
+</li>
+<li><p>端口号：目标服务器的端口号，默认值为 80 。</p>
+</li>
+<li><p>协议：向目标服务器发送HTTP请求时的协议,可以是http或者是https ,默认值为http 。</p>
+</li>
+<li><p>方法：发送HTTP请求的方法，可用方法包括GET、POST、PUT、DELETE。</p>
+</li>
+<li><p>Content encoding ：内容的编码方式，默认值为iso8859；一般设置【UTF-8】</p>
+</li>
+<li><p>路径：目标URL路径（不包括服务器地址和端口）</p>
+</li>
+<li><p>同请求一起发送参数:请求时需要传递参数，如：学院资源list查询<br><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/api/departments/?$dep_id_list=T01,T02,T03">http://127.0.0.1:8000/api/departments/?$dep_id_list=T01,T02,T03</a><br>参数名称：【$dep_id_list】<br>参数值：T01,T02,T03</p>
+</li>
+</ol>
+<h5 id="Body-Data-选项作用："><a href="#Body-Data-选项作用：" class="headerlink" title="Body Data 选项作用："></a>Body Data 选项作用：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> 1.新增或更新时需要传递JSON报文；如学院新增是的JSON报文填写位置：</span><br><span class="line"> &#123;</span><br><span class="line">&quot;data&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;dep_id&quot;: &quot;T01&quot;,</span><br><span class="line">&quot;dep_name&quot;: &quot;Test学院&quot;,</span><br><span class="line">&quot;master_name&quot;: &quot;Test-Master&quot;,</span><br><span class="line">&quot;slogan&quot;: &quot;Here is Slogan&quot;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>【注意】：新增和更新时传入报文也需要设置Content-Type:application/json<br>告诉服务器我传的数据格式为JSON格式；<br>设置地点：配置元件–&gt;HTTP信息头管理器（用到的时候我们在讲解）</p>
+</blockquote>
+<h4 id="HTTP-请求总结："><a href="#HTTP-请求总结：" class="headerlink" title="HTTP 请求总结："></a>HTTP 请求总结：</h4><ol>
+<li><p>接口完整请求地址</p>
+</li>
+<li><p>JSON报文存放地址</p>
+</li>
+<li><p>设置默认请求数据格式</p>
+</li>
+</ol>
+<h3 id="4-3-察看结果树"><a href="#4-3-察看结果树" class="headerlink" title="4.3  察看结果树"></a>4.3  察看结果树<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/31.jpg" alt="31"></h3><h4 id="作用：-2"><a href="#作用：-2" class="headerlink" title="作用："></a>作用：</h4><blockquote>
+<p>1.查看请求服务器时的请求信息;</p>
+<p>2.查看服务器响应数据;</p>
+<p>3.记录信息到指定文件;</p>
+</blockquote>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><ol>
+<li>文件名：存放服务器响应后的状态信息； 如：e:\查询所有response.txt</li>
+<li>取样结果：服务器响应的信息头信息；比如：响应代码，响应数据大小</li>
+<li>请求：查看向服务器请求时的信息；比如：请求地址、方法、数据等</li>
+<li>响应数据：查看服务器响应的数据；比如：获取资源时，返回的JSON数据</li>
+</ol>
+<h4 id="察看结果树总结："><a href="#察看结果树总结：" class="headerlink" title="察看结果树总结："></a>察看结果树总结：</h4><ol>
+<li><p>查看请求</p>
+</li>
+<li><p>查看响应</p>
+</li>
+<li><p>存储请求状态信息</p>
+</li>
+</ol>
+<h4 id="4-4-线程组总结："><a href="#4-4-线程组总结：" class="headerlink" title="4.4 线程组总结："></a>4.4 线程组总结：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setup thread group：一种特殊线程组，测试计划运行之前首先执行，一般做初始化操作</span><br><span class="line">teardown thread group：一种特殊线程组，测试计划运行结束时运行，一般做收尾工作</span><br><span class="line">thread group(线程组) ：线程组，我们测试计划中场景创建和实现都是基于此线程组</span><br></pre></td></tr></table></figure>
+
+<h3 id="元件"><a href="#元件" class="headerlink" title="元件"></a>元件</h3><blockquote>
+<p>概念：相同类似功能组件的集合称之为元件</p>
+</blockquote>
+<ol>
+<li><p>逻辑控制器</p>
+</li>
+<li><p>配置元件</p>
+</li>
+<li><p>定时器</p>
+</li>
+<li><p>前置处理器</p>
+</li>
+<li><p>Sampler</p>
+</li>
+<li><p>后置处理器</p>
+</li>
+<li><p>断言</p>
+</li>
+<li><p>监听器</p>
+</li>
+</ol>
+<h3 id="元件结论："><a href="#元件结论：" class="headerlink" title="元件结论："></a>元件结论：</h3><blockquote>
+<p>只学重要的、常用的</p>
+</blockquote>
+<h1 id="Jmeter-各元件中需要掌握元件"><a href="#Jmeter-各元件中需要掌握元件" class="headerlink" title="Jmeter 各元件中需要掌握元件"></a>Jmeter 各元件中需要掌握元件</h1><h5 id="整理出各大元件常用的重点组件"><a href="#整理出各大元件常用的重点组件" class="headerlink" title="整理出各大元件常用的重点组件"></a>整理出各大元件常用的重点组件</h5><h2 id="1-配置元件（-config-Element-）"><a href="#1-配置元件（-config-Element-）" class="headerlink" title="1. 配置元件（ config Element ）"></a>1. 配置元件（ config Element ）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) CSV Data Set Config</span><br><span class="line">2) HTTP请求默认值</span><br><span class="line">3) HTTP信息头管理器</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-前置处理器（-Per-Processors-）"><a href="#2-前置处理器（-Per-Processors-）" class="headerlink" title="2. 前置处理器（ Per Processors ）"></a>2. 前置处理器（ Per Processors ）</h2><blockquote>
+<ol>
+<li>用户参数</li>
+</ol>
+</blockquote>
+<h2 id="3-定时器（-Timer-）"><a href="#3-定时器（-Timer-）" class="headerlink" title="3. 定时器（ Timer ）"></a>3. 定时器（ Timer ）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1) Synchronizing Timer</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-取样器（-sample-）"><a href="#4-取样器（-sample-）" class="headerlink" title="4. 取样器（ sample ）"></a>4. 取样器（ sample ）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) HTTP请求</span><br><span class="line">2) JDBC Request</span><br><span class="line">3) Debug Sampler</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-后置处理器（-Post-Processors-）"><a href="#5-后置处理器（-Post-Processors-）" class="headerlink" title="5. 后置处理器（ Post Processors ）"></a>5. 后置处理器（ Post Processors ）</h2><h6 id="1-正则表达式提取器"><a href="#1-正则表达式提取器" class="headerlink" title="1) 正则表达式提取器"></a>1) 正则表达式提取器</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2) XPath Extractor</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-断言（-Assertions-）"><a href="#6-断言（-Assertions-）" class="headerlink" title="6. 断言（ Assertions ）"></a>6. 断言（ Assertions ）</h2><h6 id="1-响应断言"><a href="#1-响应断言" class="headerlink" title="1) 响应断言"></a>1) 响应断言</h6><h3 id="6-监听器（-Listener-）"><a href="#6-监听器（-Listener-）" class="headerlink" title="6. 监听器（ Listener ）"></a>6. 监听器（ Listener ）</h3><h6 id="1-察看结果树"><a href="#1-察看结果树" class="headerlink" title="1) 察看结果树"></a>1) 察看结果树</h6><h6 id="2-聚合报告"><a href="#2-聚合报告" class="headerlink" title="2) 聚合报告"></a>2) 聚合报告</h6><h6 id="3-断言结果"><a href="#3-断言结果" class="headerlink" title="3) 断言结果"></a>3) 断言结果</h6><h3 id="8-逻辑控制器"><a href="#8-逻辑控制器" class="headerlink" title="8. 逻辑控制器"></a>8. 逻辑控制器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) 如果（If）控制器</span><br><span class="line">2) ForEach控制器</span><br><span class="line">3) 循环控制器</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结：正常来说，应该开始按照顺序一个组件一个组件的进行讲解。</p>
+<p>问题：每个组件都不能独立执行。都需要多个组件进行配合，才能够解决实际问题。</p>
+<p>解决方案：按照JMeter主要解决的问题点来讲解组件。</p>
+</blockquote>
+<h1 id="Jmeter-工具核心知识点"><a href="#Jmeter-工具核心知识点" class="headerlink" title="Jmeter 工具核心知识点"></a>Jmeter 工具核心知识点</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+<li><p>参数化：数据分离</p>
+</li>
+<li><p>数据库：连接数据库获取数据</p>
+</li>
+<li><p>关联：动态获取数据</p>
+</li>
+<li><p>集合点：掌握如何基于Jmeter并发测试</p>
+</li>
+<li><p>断言：判断自动化脚本执行成功或失败</p>
+</li>
+</ul>
+<h1 id="Jmeter-参数化"><a href="#Jmeter-参数化" class="headerlink" title="Jmeter 参数化"></a>Jmeter 参数化</h1><h5 id="学习掌握Jmeter中常用参数化方式"><a href="#学习掌握Jmeter中常用参数化方式" class="headerlink" title="学习掌握Jmeter中常用参数化方式"></a>学习掌握Jmeter中常用参数化方式</h5><h2 id="1-为什么要参数化？"><a href="#1-为什么要参数化？" class="headerlink" title="1. 为什么要参数化？"></a>1. 为什么要参数化？</h2><h2 id="1-1-需求新增-10-条数据"><a href="#1-1-需求新增-10-条数据" class="headerlink" title="1.1 需求新增 10 条数据"></a>1.1 需求新增 10 条数据</h2><h6 id="学院-新增"><a href="#学院-新增" class="headerlink" title="学院-新增"></a>学院-新增</h6><h6 id="1-请求方法：POST"><a href="#1-请求方法：POST" class="headerlink" title="1) 请求方法：POST"></a>1) 请求方法：POST</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">2) 请求地址：http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;api&#x2F;departments&#x2F;</span><br><span class="line">3) 请求JOSN报文：</span><br><span class="line">4) 调用传入的json串如下（可新增多条，之间用,隔开）：</span><br><span class="line">&#123;</span><br><span class="line">&quot;data&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;dep_id&quot;: &quot;T01&quot;,</span><br><span class="line">&quot;dep_name&quot;: &quot;Test学院&quot;,</span><br><span class="line">&quot;master_name&quot;: &quot;Test-Master&quot;,</span><br><span class="line">&quot;slogan&quot;: &quot;Here is Slogan&quot;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题 :"></a>问题 :</h2><blockquote>
+<ol>
+<li>键所对应的值都是写死的，只能手动更改</li>
+<li>无法解决新增大数量（ 1000 条）的问题</li>
+</ol>
+</blockquote>
+<h2 id="2-什么是参数化？"><a href="#2-什么是参数化？" class="headerlink" title="2. 什么是参数化？"></a>2. 什么是参数化？</h2><blockquote>
+<p>概念：根据需求动态获取数据并进行赋值的过程</p>
+</blockquote>
+<h2 id="在-Jmeter-中参数化常用方式："><a href="#在-Jmeter-中参数化常用方式：" class="headerlink" title="在 Jmeter 中参数化常用方式："></a>在 Jmeter 中参数化常用方式：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CSV Data Set Config</span><br><span class="line">用户参数</span><br><span class="line">用户定义的变量</span><br><span class="line">函数</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-CSV-Data-Set-Config-（数据集配置）"><a href="#1-CSV-Data-Set-Config-（数据集配置）" class="headerlink" title="1. CSV Data Set Config （数据集配置）"></a>1. CSV Data Set Config （数据集配置）</h2><blockquote>
+<p>概念：一种从外部读取数据功能的组件</p>
+</blockquote>
+<h3 id="1-1-实施方案分析"><a href="#1-1-实施方案分析" class="headerlink" title="1.1 实施方案分析"></a>1.1 实施方案分析</h3><h6 id="1-基于测试计划-gt-线程组"><a href="#1-基于测试计划-gt-线程组" class="headerlink" title="1. 基于测试计划-&gt;线程组"></a>1. 基于测试计划-&gt;线程组</h6><ol>
+<li>基于线程组-&gt;配置元件-&gt;CSV Data Set Config</li>
+<li>基于线程组-&gt;Sampler-&gt;HTTP请求</li>
+<li>基于测试计划-&gt;HTTP信息头管理器</li>
+<li>基于测试计划-&gt;监听器-&gt;察看结果树</li>
+</ol>
+<h3 id="1-2-组件要点分析"><a href="#1-2-组件要点分析" class="headerlink" title="1.2 组件要点分析"></a>1.2 组件要点分析</h3><h6 id="1-线程组-循环次数-10"><a href="#1-线程组-循环次数-10" class="headerlink" title="1. 线程组:循环次数 10"></a>1. 线程组:循环次数 10</h6><ol>
+<li>CSV Data Set Config 读取变量配置</li>
+<li>HTTP请求：Body Data填写(JSON报文) 方法(POST)</li>
+<li>参数化引用格式：${参数名} 如：${dep_id}</li>
+<li>HTTP信息头管理器：Content-Type:application/json;charset=utf-8</li>
+</ol>
+<h3 id="1-3-CSV-Data-Set-Config-参数配置图"><a href="#1-3-CSV-Data-Set-Config-参数配置图" class="headerlink" title="1.3 CSV Data Set Config 参数配置图"></a>1.3 CSV Data Set Config 参数配置图</h3><p>#####<img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/32.jpg" alt="32"></p>
+<ol>
+<li>Filename:文件路径+文件名+后缀名 如：d:/a.txt;</li>
+<li>File Encoding:文件编译字符编码，一般设置utf-8;</li>
+<li>Vaiable Names:读取参数后保存的变量名称;</li>
+<li>Delimiter:如文件中使用的是逗号分隔，则填写逗号；如使用的是TAB，则填写\t;</li>
+</ol>
+<h3 id="1-4-HTTP-信息头管理器-参数配置图"><a href="#1-4-HTTP-信息头管理器-参数配置图" class="headerlink" title="1.4 HTTP 信息头管理器 参数配置图"></a>1.4 HTTP 信息头管理器 参数配置图</h3><blockquote>
+<p>作用：告诉服务器请求的数据格式</p>
+</blockquote>
+<p><img src="https://nateshao-blog.oss-cn-shenzhen.aliyuncs.com/img/33.jpg" alt="33"></p>
+<ol>
+<li>Content-Type:指定请求信息格式-类型名称</li>
+<li>application/json:指定请求信息为-JSON格式</li>
+<li>charset=utf-8:字符编码</li>
+</ol>
+<h3 id="1-5-CSV-Data-Set-Config-总结："><a href="#1-5-CSV-Data-Set-Config-总结：" class="headerlink" title="1.5 CSV Data Set Config- 总结："></a>1.5 CSV Data Set Config- 总结：</h3><h6 id="1-参数化概念"><a href="#1-参数化概念" class="headerlink" title="1. 参数化概念"></a>1. 参数化概念</h6><ol>
+<li>CSV Data Set Config 配置参数设置</li>
+<li>参数化引用格式</li>
+<li>HTTP请求</li>
+<li>HTTP信息头管理器作用与设置</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1210331079@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">Title:</span>接口测试-02-Jmeter</p>
+    <p><span class="copy-title">Count:</span><span class="post-count">3.3k</span></p>
+    <p><span class="copy-title">Author:</span><a  title="浅  悦">浅  悦</a></p>
+    <p><span class="copy-title">Created At:</span>2020-08-17, 01:02:12</p>
+    <p><span class="copy-title">Updated At:</span>2020-08-18, 22:39:47</p>
+    <span class="copy-title">Url:</span><a class="post-url" href="/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/" title="接口测试-02-Jmeter">https://nate-lin.gitee.io/2020/08/17/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95-02-Jmeter/</a>
+    <p>
+        <span class="copy-title">Copyright:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#39;Attribution-non-commercial-shared in the same way 4.0&#39;</a> Reprint please keep the original link and author.
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 千羽
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>donation.headline</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:true,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+// 底部音乐
+<div style="position:absolute; bottom: 0; right: 0;">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29393038&auto=1&height=66"></iframe>
+</div>
+
+//右上角Github图标
+<a target="_blank" rel="noopener" href="https://github.com/nateshao" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80"
+         height="80"
+         viewBox="0 0 250 250"
+         style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+         aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                                                                                                                                                                                                                                                                                                    fill="currentColor"
+                                                                                                                                                                                                                                                                                                    class="octo-body">
+        </path>
+    </svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+
+</html>
